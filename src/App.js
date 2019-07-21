@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
-import Auth from './oauth.jsx';
 import Nav from './Nav';
 import Login from './Login';
 import Session from './Session'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+require('dotenv').config()
+
 
 function App() {
   return (
