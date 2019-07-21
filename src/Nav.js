@@ -12,9 +12,9 @@ function Nav() {
     <nav>
       <h3>DEALBREAKER</h3>
       <ul className="nav-links">
-        <Link style={navStyle} to="/session">
+        {/* <Link style={navStyle} to="/session">
         <li>session</li>
-        </Link>
+        </Link> */}
         <Link style={navStyle} to="/login">
           <li>login</li>
         </Link>
