@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Nav from './Nav';
 import Login from './Login';
-import Session from './Session'
+import Sessions from './Sessions'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 require('dotenv').config()
 
@@ -15,7 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/Session" component={Session} />
+          <Route path="/Sessions" component={Sessions} />
         </Switch>
       </div>
     </Router >

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function Session() {
+function Sessions() {
 
   return (
     <div >
@@ -10,4 +10,4 @@ function Session() {
   );
 }
 
-export default Session;
+export default Sessions;
