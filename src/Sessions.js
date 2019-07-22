@@ -1,4 +1,5 @@
 import React from 'react';
+require('dotenv').config({ path: '../' })
 //import axios from 'axios';
 
 function Sessions() {
@@ -8,7 +9,7 @@ function Sessions() {
   let code = params.get('code');
   console.log(code);
   
-  const url = 'http://localhost:5000/sessions';
+  const url = process.env.REACT_APP_SESSIONS_URL;
   const data = { 
     code: code,
     test: "test"
