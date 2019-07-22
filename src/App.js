@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import Nav from './Nav';
-import Login from './Login';
-import Sessions from './Sessions'
+import Nav from './components/Nav';
+import Home from './components/Home';
+import Login from './components/Login';
+import Game from './components/Game'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 require('dotenv').config()
 
@@ -14,20 +15,13 @@ function App() {
         <Nav />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/Sessions" component={Sessions} />
+          <Route path="/login" component={Home} />
+          <Route path="/game" component={Game} />
         </Switch>
       </div>
     </Router >
   );
 }
 
-const Home = () => {
-  return (
-    <div>
-      <h2>Home Page</h2>
-    </div>
-  );
-}
 
 export default App;

@@ -1,8 +1,8 @@
 import React from 'react';
-require('dotenv').config({ path: '../' })
+require('dotenv').config({ path: '../../' })
 //import axios from 'axios';
 
-function Sessions() {
+function Game() {
   
   // Get OAUTH Instagram code from url params
   let params = (new URL(document.location)).searchParams;
@@ -27,9 +27,9 @@ function Sessions() {
 
   return (
     <div >
-      <h1>Session (Waiting Room/Game Room)</h1>
+      <h1>Game (Waiting Room/Game Room)</h1>
     </div>
   );
 }
 
-export default Sessions;
+export default Game;
