@@ -5,10 +5,8 @@ require('dotenv').config({ path: '../' })
 
 
 function Login() {
-
-  // const oauth_url = 'https://api.instagram.com/oauth/authorize/?client_id=8471be6298f8410b90fd9ddb8b9243de&redirect_uri=http://localhost:3000/session&response_type=code';
+  
   const oauth_url = process.env.REACT_APP_INSTAGRAM_AUTH;
-
 
   return (
     <div >
