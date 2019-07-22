@@ -9,7 +9,7 @@ function Sessions() {
   let code = params.get('code');
   console.log(code);
   
-  const url = process.env.REACT_APP_SESSIONS_URL;
+  const url = process.env.REACT_APP_SESSIONS_URL || 'https://dealbreakergame-server.herokuapp.com/sessions';
   const data = { 
     code: code,
     test: "test"
