@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Game from './components/Game'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Privacy from './components/Privacy';
 require('dotenv').config()
 
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Home} />
           <Route path="/game" component={Game} />
+          <Route path="/privacy" component={Privacy}/>
         </Switch>
       </div>
     </Router >
