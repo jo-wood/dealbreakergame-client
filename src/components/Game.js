@@ -1,35 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Question from './Question'
 require('dotenv').config({ path: '../../' })
-//import axios from 'axios';
 
-function Game() {
+class Game extends Component {
+  constructor() {
+    super();
+    this.state = { questions: null }
+  }
   
-  // Get OAUTH Instagram code from url params
-  let params = (new URL(document.location)).searchParams;
-  let code = params.get('code');
-  console.log(code);
+  async componentDidMount() {
+    const response = await fetch('http://localhost:3001/questions')
+    const json = await response.json();
+    await this.setState({ questions: json })
+  }
+
+  renderQuestion(questions) {
+    return questions.map(question => {
+      return (
+        <div>
+          <Question key={question.id} q={question} />
+        </div>
+      )  
+    });
+
+  }
   
-  const url = process.env.REACT_APP_SESSIONS_URL || 'https://dealbreakergame-server.herokuapp.com/sessions';
-  const data = { 
-    code: code,
-    test: "test"
-   };
+  render() {
+    const { questions } = this.state;
+    const question = questions ? (this.renderQuestion(questions)) : (<h3>Loading Question ...</h3>)
+    return (
+      <div>
+        { question }
+      </div>
+    );
+  }
 
-  fetch(url, {
-    method: 'POST', // or 'PUT'
-    headers: { "Content-Type": "application/json" },
-    mode: 'cors',
-    body: JSON.stringify(data), // data can be `string` or {object}!
-  }).then(res => res.json()
-  ).then( (data) => {
-    console.log(data);
-  });
-
-  return (
-    <div >
-      <h1>Game (Waiting Room/Game Room)</h1>
-    </div>
-  );
 }
 
 export default Game;

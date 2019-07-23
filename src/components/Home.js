@@ -2,7 +2,7 @@ import React from 'react';
 require('dotenv').config({ path: '../../' })
 
 function Home() {
-  
+
   const oauth_url = process.env.REACT_APP_INSTAGRAM_AUTH;
 
   return (
@@ -15,3 +15,4 @@ function Home() {
 }
 
 export default Home;
+
