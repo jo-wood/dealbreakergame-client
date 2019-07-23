@@ -9,7 +9,9 @@ function Nav() {
 
   return (
     <nav>
-      <h3>DEALBREAKER</h3>
+      <a href="#">
+        <h1 id="logo">Deal<strong>Breaker</strong></h1>
+      </a>
       <ul className="nav-links">
         {/* <Link style={navStyle} to="/session">
         <li>session</li>
