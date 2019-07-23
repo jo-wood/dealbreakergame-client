@@ -5,7 +5,7 @@ function Footer() {
   return (
     <footer>
         <p>Made with Love in Toronto, Canada.</p>
-        <a href="">Privacy</a>
+        <a href="/privacy">Privacy</a>
     </footer>
   );
 }
