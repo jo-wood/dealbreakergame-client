@@ -9,7 +9,7 @@ class Game extends Component {
   }
   
   async componentDidMount() {
-    const response = await fetch('http://localhost:3001/questions')
+    const response = await fetch('http://localhost:5000/questions')
     const json = await response.json();
     await this.setState({ questions: json })
   }
