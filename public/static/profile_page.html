@@ -1,0 +1,64 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Deal Breaker | User Profile</title>
+  <meta name="description" content=" DealBreaker, a real-time dating game show. User Profile page, find out more about yourself and your matches">
+  <meta name="author" content="Alex, Joanna, Junaid">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+    <nav>
+        <logo>
+            <a href="">
+                <h1>Deal<strong>Breaker</strong></h1>
+            </a>
+        </logo>
+        <div>
+            <!-- Here the user is logged out, maybe make the text RED in colour -->
+            <a href="">
+                <img src="" alt="user's profile picture">
+                <p>Log Out</p>
+            </a>
+        </div>
+    </nav>
+    <main class="gameFeed">
+        <div id="User_information">
+            <div>
+                <a href="">
+                    <!-- click to change picture from instagram -->
+                    <img src="" alt="user's protait">
+                </a>
+            </div>
+            <div id="user_details">
+                <!-- Replace Id with user_Id-->
+                <ul>
+                    <li>Age: 25</li>
+                    <li>Sex: Male</li>
+                    <li>Sexual Perference: Females</li>
+                    <li>Member Since" August 2nd 2019</li>
+                    <li>Age Perference: 21-28</li>
+                </ul>
+            </div>
+            <div id="age_slider">
+                <!-- ONLY VISABLE ON USERS OWN PROFILE-->
+                <h3>Age Perference:</h3>
+                <!-- Need to adapt for double slider Maybe JQuery or React Component-->
+                <input name="agePerference" type="range" min="18" max="100" value="50">
+            </div>
+        </div>
+    </main>
+    <div id="PastMatches">
+        <section id="contestant_id">
+            <!-- id need to be replaced with the user_id associated with the contestant so we can blur based on the id-->
+            <img src="" alt="contestient's profile picture">
+        </section>
+    </div>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
