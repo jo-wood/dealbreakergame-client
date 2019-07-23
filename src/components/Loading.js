@@ -45,7 +45,7 @@ class Loading extends Component {
             <div>
               { console.log(userInfo.state) }
               { userInfo.state.username ? null : userInfo.fetchUser(url, data) }
-              {/* <div>{incomingData ? userInfo.fetchUser(url, data) : 'still loading...'}</div> */}
+              
               <p>{ userInfo.state.username }</p>
               <p>{ userInfo.state.full_name }</p>
               <img src={ userInfo.state.profile_picture }/>
