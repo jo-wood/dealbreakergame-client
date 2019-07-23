@@ -15,19 +15,20 @@ const data = {
   test: "test"
  };
 
-let incomingData = null;
+//let incomingData = null;
 
-fetch(url, {
-  method: 'POST', // or 'PUT'
-  headers: { "Content-Type": "application/json" },
-  mode: 'cors',
-  body: JSON.stringify(data), // data can be `string` or {object}!
-}).then(res => res.json()
-).then( (data) => {
+// fetch(url, {
+//   method: 'POST', // or 'PUT'
+//   headers: { "Content-Type": "application/json" },
+//   mode: 'cors',
+//   body: JSON.stringify(data), // data can be `string` or {object}!
+// }).then(res => res.json()
+// ).then( (data) => {
   
-  incomingData = data;
-  console.log(data);
-});
+//   incomingData = data;
+  
+//   //console.log(incomingData);
+// });
 
 
 
@@ -42,8 +43,12 @@ class Loading extends Component {
         <Subscribe to={[UserContainer]}>
           {userInfo => (
             <div>
-              <div>{incomingData ? userInfo.addUser(incomingData) : 'still loading...'}</div>
-              <p>{ userInfo.state.username}</p>
+              { console.log(userInfo.state) }
+              { userInfo.state.username ? null : userInfo.fetchUser(url, data) }
+              {/* <div>{incomingData ? userInfo.fetchUser(url, data) : 'still loading...'}</div> */}
+              <p>{ userInfo.state.username }</p>
+              <p>{ userInfo.state.full_name }</p>
+              <img src={ userInfo.state.profile_picture }/>
             </div>
           )}
         </Subscribe>      
@@ -52,6 +57,5 @@ class Loading extends Component {
   
   }
 }
-
 
 export default Loading;

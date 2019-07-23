@@ -10,9 +10,9 @@ function Home() {
       <h2>(Home Page)</h2>
       <h2>Welcome to Real Time Dating Game Show</h2>
       <a href={oauth_url}>SIGN IN WITH INSTAGRAM</a>
-      <form method="get" action="http://localhost:5000/sessions">
+      {/* <form method="get" action="http://localhost:5000/sessions">
         <button type="submit">SIGN IN</button>
-      </form>
+      </form> */}
 
     </div>
   );
