@@ -9,7 +9,7 @@ function Nav() {
 
   return (
     <nav>
-      <a href="#">
+      <a href="/">
         <h1 id="logo">Deal<strong>Breaker</strong></h1>
       </a>
       <ul className="nav-links">

@@ -1,34 +1,57 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Subscribe } from 'unstated';
 
-function Loading() {
+import UserContainer from '../containers/users';
 
-  // Get OAUTH Instagram code from url params
-  let params = (new URL(document.location)).searchParams;
-  let code = params.get('code');
-  console.log(code);
+
+// Get OAUTH Instagram code from url params
+let params = (new URL(document.location)).searchParams;
+let code = params.get('code');
+console.log(code);
+
+const url = process.env.REACT_APP_SESSIONS_URL || 'https://dealbreakergame-server.herokuapp.com/sessions';
+const data = {
+  code: code,
+  test: "test"
+ };
+
+let incomingData = null;
+
+fetch(url, {
+  method: 'POST', // or 'PUT'
+  headers: { "Content-Type": "application/json" },
+  mode: 'cors',
+  body: JSON.stringify(data), // data can be `string` or {object}!
+}).then(res => res.json()
+).then( (data) => {
   
-  const url = process.env.REACT_APP_SESSIONS_URL || 'https://dealbreakergame-server.herokuapp.com/sessions';
-  const data = {
-    code: code,
-    test: "test"
-   };
+  incomingData = data;
+  console.log(data);
+});
 
-  fetch(url, {
-    method: 'POST', // or 'PUT'
-    headers: { "Content-Type": "application/json" },
-    mode: 'cors',
-    body: JSON.stringify(data), // data can be `string` or {object}!
-  }).then(res => res.json()
-  ).then( (data) => {
-    console.log(data);
-  });
 
-  return (
-    <div>
-      <h1>DEALBREAKER</h1>
-      <p>loading...</p>
-    </div>
-  );
+
+class Loading extends Component {
+
+  render() {
+
+    return (
+      <div>
+        <h1>DEALBREAKER</h1>
+        <p>loading...</p>
+        <Subscribe to={[UserContainer]}>
+          {userInfo => (
+            <div>
+              <div>{incomingData ? userInfo.addUser(incomingData) : 'still loading...'}</div>
+              <p>{ userInfo.state.username}</p>
+            </div>
+          )}
+        </Subscribe>      
+      </div>
+    );
+  
+  }
 }
+
 
 export default Loading;
