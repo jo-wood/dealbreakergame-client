@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Deal Breaker | Live Game</title>
+  <meta name="description" content=" DealBreaker, a real-time dating game show. Game is in progress, laughs and gasps are begin generated and matches are being determined!">
+  <meta name="author" content="Alex, Joanna, Junaid">
+
+  <link rel="stylesheet" href="game_style.css">
+
+</head>
+
+<body>
+    <nav>
+        <div>
+            <a href="">
+                <h1 id="logo">Deal<strong>Breaker</strong></h1>
+            </a>
+        </div>
+        <div class="NavUser">
+            <a href="">
+                <img src="" alt="user's profile picture">
+                <p>User Name</p>
+            </a>
+        </div>
+    </nav>
+    <main class="gameFeed">
+        <div id="videoFeed">
+            <video width="360" height="500" autoplay="autoplay">
+                <source src="https://www.youtube.com/watch?v=Tdw7kxD8eUc" type="video/mp4" />
+            </video>
+        </div>
+        <div class="poll">
+            <!-- Replace Id with question Id-->
+            <form id="question_id" action="">
+                <h2>Clinatro is...</h2>
+                <select name="answers" multiple>
+                    <option value="optionA">YUCK!</option>
+                    <option value="optionB">I'd Marry it!</option>
+                    <option value="optionC">Dont care</option>
+                    <option value="optionD">Dont like talking about it</option>
+                </select>
+                <!-- NO input for submit because the form will auto submit when timer is over-->>
+            </form>
+        </div>
+        <div id="poll_attr">
+            <!-- React timer: https://www.npmjs.com/package/react-circular-progressbar-->
+            <div>Insert Circular timer here</div>
+            <!-- Insert Deal breaker button that is clickable when deal breaker has already been used and user needs to be prompted to why they cant vito anymore-->
+            <button>Deal Breaker</button>
+        </div>
+    </main>
+    <div id="contestantsPool">
+        <section id="contestant_id">
+            <!-- id need to be replaced with the user_id associated with the contestant so we can blur based on the id-->
+            <img src="" alt="contestient's profile picture">
+        </section>
+    </div>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
