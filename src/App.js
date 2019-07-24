@@ -31,6 +31,7 @@ function App() {
             <Route path="/game" exact component={Game} />
             <Route path="/privacy" exact component={Privacy}/>
             <Route path="/profile" exact component={Profile}/>
+            <Route path="/waiting" exact component={WaitingRoom}/>
           </Switch>
           <Footer/>
         </div>
