@@ -2,9 +2,7 @@ import { Container } from 'unstated';
 
 class UserContainer extends Container {
   state = {
-    username: null,
-    full_name: null,
-    profile_picture: null
+    currentUser: null
   };
 
   addUser (instaResponse) {
@@ -34,9 +32,11 @@ class UserContainer extends Container {
     .then(JSON.parse) //whyyy??? 
     .then((data) => {
       this.setState({
-        username: data.username,
-        full_name: data.full_name,
-        profile_picture: data.profile_picture
+        currentUser: {
+          username: data.username,
+          full_name: data.full_name,
+          profile_picture: data.profile_picture
+        }
       })
     });
   }

@@ -39,16 +39,17 @@ class Loading extends Component {
     return (
       <div>
         <h1>DEALBREAKER</h1>
-        <p>loading...</p>
+        <p>---</p>
         <Subscribe to={[UserContainer]}>
           {userInfo => (
             <div>
               { console.log(userInfo.state) }
-              { userInfo.state.username ? null : userInfo.fetchUser(url, data) }
+              { !userInfo.state.currentUser ? <h2>Loading...</h2> : null }
+              { userInfo.state.currentUser ? null : userInfo.fetchUser(url, data) }
               
-              <p>{ userInfo.state.username }</p>
-              <p>{ userInfo.state.full_name }</p>
-              <img src={ userInfo.state.profile_picture }/>
+              <p>{ userInfo.state.currentUser != null ? userInfo.state.currentUser.username : null }</p>
+              <p>{ userInfo.state.currentUser != null ? userInfo.state.currentUser.full_name : null }</p>
+              <img src={ userInfo.state.currentUser != null ? userInfo.state.currentUser.profile_picture : null }/>
             </div>
           )}
         </Subscribe>      
