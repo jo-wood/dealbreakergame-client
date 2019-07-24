@@ -5,7 +5,9 @@ require('dotenv').config({ path: '../../' })
 class Game extends Component {
   constructor() {
     super();
-    this.state = { questions: null }
+    this.state = {
+      questions: null,
+    }
   }
   
   async componentDidMount() {
@@ -20,11 +22,11 @@ class Game extends Component {
         <div>
           <Question key={question.id} q={question} />
         </div>
-      )  
+      )
     });
 
   }
-  
+
   render() {
     const { questions } = this.state;
     const question = questions ? (this.renderQuestion(questions)) : (<h3>Loading Question ...</h3>)

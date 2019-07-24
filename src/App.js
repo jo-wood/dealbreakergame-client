@@ -10,6 +10,7 @@ import Privacy from './components/Privacy';
 import Profile from './components/Profile';
 import Loading from './components/Loading';
 import Footer from './components/Footer';
+import WaitingRoom from './components/WaitingRoom';
 
 // ------ Unstated
 import { Provider } from 'unstated';
