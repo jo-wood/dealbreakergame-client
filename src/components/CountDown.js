@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 class Countdown extends Component {
   render() {
-    const {  } = this.props;
+    // const {  } = this.props;
     return (
-      <div class="chatPrompt">
-          <p>{prompt}</p>
+      <div class="countdown">
+          <p>counter goes here </p>
       </div>
     );
   }

@@ -12,8 +12,8 @@ class ChatRoom extends Component {
   
   async componentDidMount() {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/chat`)
-    const json = await response.json();
-    await this.setState({ chatlog: json })
+    //const json = await response.json();
+    await this.setState({ chatlog: [ "hello", "whats popping", "what is this ?"]})
   }
 
   renderChat(chatlog) {
@@ -21,7 +21,6 @@ class ChatRoom extends Component {
       return (
         <div>
           <ChatPrompt key={prompt.id} prompt={prompt} />
-          <input type="text" name="chatInput" value="Ready to play?"></input>
         </div>
       )
     });
@@ -33,6 +32,7 @@ class ChatRoom extends Component {
     return (
       <div>
         { chat }
+        <input type="text" name="chatInput" placeholder="Ready to play?"></input>
       </div>
     );
   }
