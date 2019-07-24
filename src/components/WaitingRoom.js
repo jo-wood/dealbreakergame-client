@@ -14,7 +14,7 @@ class Game extends Component {
     return (
       <div>
         <h2>The Game Breaks Out At 8 PM</h2>
-        <CountDown/>
+        <CountDown startTime={`2019-07-24T20:00:00`}/>
         <ChatRoom/>
       </div>
     );
