@@ -52,14 +52,14 @@ class User extends Component {
     const viewer = (viewAs === 'myProfile') ? this.renderMyProfile(age_range_min, age_range_max) : this.renderMatchProfile(full_name, username);
     return (
       <div className="profile">
-        <div className="user_details">  
-          <h2>{full_name}</h2>
-          <img src={image_url} alt="profile_image"/>
-          {age}
-          {displayGender}
-        {viewer}
-        </div>
-      </div>   
+          <img src={image_url} alt="profile_image"/>       
+          <div className="user_details">  
+            <h2>{full_name}</h2>
+            {age}
+            {displayGender}
+            {viewer}
+          </div>
+      </div>  
     );
   }
 

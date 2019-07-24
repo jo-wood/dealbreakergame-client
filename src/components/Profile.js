@@ -21,7 +21,7 @@ class Profile extends Component {
   renderProfile(user, user_matches) {
     // add check for current cookie session with returned user object
     // remove users.map when passing only one user response to renderProfile
-      const dummy_cookie = 8;
+      const dummy_cookie = 1;
       if (user.id === dummy_cookie) {
           return (
             <div>

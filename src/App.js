@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/main.scss';
 import './styles/question.css';
+import './styles/profile.css';
 import Nav from './components/Nav';
 import Home from './components/Home';
 //import Login from './components/Login';
