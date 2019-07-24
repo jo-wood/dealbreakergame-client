@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/main.scss';
 import './styles/question.css';
+import './styles/profile.css';
 import Nav from './components/Nav';
 import Home from './components/Home';
 //import Login from './components/Login';
@@ -31,6 +32,7 @@ function App() {
             <Route path="/game" exact component={Game} />
             <Route path="/privacy" exact component={Privacy}/>
             <Route path="/profile" exact component={Profile}/>
+            <Route path="/waiting" exact component={WaitingRoom}/>
           </Switch>
           <Footer/>
         </div>
