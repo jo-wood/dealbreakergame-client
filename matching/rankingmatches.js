@@ -1,9 +1,9 @@
 var maxSpeed = {
-    car: 300, 
-    bike: 60, 
-    motorbike: 200, 
-    airplane: 1000,
-    helicopter: 400, 
+    user1: 300, 
+    user2: 60, 
+    user3: 200, 
+    user4: 1000,
+    user5: 400, 
     rocket: 8 * 60 * 60
 };
 

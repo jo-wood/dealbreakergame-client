@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Privacy from './components/Privacy';
 import Loading from './components/Loading';
 import Footer from './components/Footer';
+import WaitingRoom from './components/WaitingRoom';
 
 // ------ Unstated
 import { Provider } from 'unstated';
@@ -28,6 +29,7 @@ function App() {
             <Route path="/loading" component={Loading}/>
             <Route path="/game" component={Game} />
             <Route path="/privacy" component={Privacy}/>
+            <Route path="/waiting" component={WaitingRoom}/>
           </Switch>
           <Footer/>
         </div>

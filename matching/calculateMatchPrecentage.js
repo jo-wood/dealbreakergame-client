@@ -40,14 +40,14 @@ let currentMatchScore = (matchPercentages) => {
 }
 
 
-let testResults = [100,50, 50, 0, 100, 50, 50];
+let matchQuestionsMatch = [100,50, 50, 0, 100, 50, 50];
 // console.log(calculateMatchPercentage(0, 0));  100%
 // console.log(calculateMatchPercentage(0, 1));  50%
 // console.log(calculateMatchPercentage(0, 2));  33%
 // console.log(calculateMatchPercentage(0));     0%
-console.log(currentMatchScore(testResults) + ' %');
+console.log("visability amount: " + currentMatchScore(matchQuestionsMatch) + ' %');
 
-//example of user matchLog from state
+//example of user matchLog from state example User4
 let matchLog = {
     user1: [100, 50, 50, 0, 100, 50, 50],
     user2: [50, 50, 50, 100, 100, 50, 50],
