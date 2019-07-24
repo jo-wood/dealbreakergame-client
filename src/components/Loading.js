@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Subscribe } from 'unstated';
+import { Redirect } from 'react-router-dom'
 
 import UserContainer from '../containers/users';
 
@@ -15,22 +16,6 @@ const data = {
   test: "test"
  };
 
-//let incomingData = null;
-
-// fetch(url, {
-//   method: 'POST', // or 'PUT'
-//   headers: { "Content-Type": "application/json" },
-//   mode: 'cors',
-//   body: JSON.stringify(data), // data can be `string` or {object}!
-// }).then(res => res.json()
-// ).then( (data) => {
-  
-//   incomingData = data;
-  
-//   //console.log(incomingData);
-// });
-
-
 
 class Loading extends Component {
 
@@ -43,13 +28,16 @@ class Loading extends Component {
         <Subscribe to={[UserContainer]}>
           {userInfo => (
             <div>
-              { console.log(userInfo.state) }
+              { console.log('CURRENT STATE: ', userInfo.state) }
+              { console.log('test') }
+              { userInfo.state.currentUser ? console.log('LOCAL-STORAGE: ', JSON.parse(localStorage.currentUser)) : null }
               { !userInfo.state.currentUser ? <h2>Loading...</h2> : null }
               { userInfo.state.currentUser ? null : userInfo.fetchUser(url, data) }
               
               <p>{ userInfo.state.currentUser != null ? userInfo.state.currentUser.username : null }</p>
               <p>{ userInfo.state.currentUser != null ? userInfo.state.currentUser.full_name : null }</p>
               <img src={ userInfo.state.currentUser != null ? userInfo.state.currentUser.profile_picture : null }/>
+              <div>{ userInfo.state.currentUser != null ? <Redirect to='/waiting' /> : null }</div>
             </div>
           )}
         </Subscribe>      

@@ -21,7 +21,7 @@ class UserContainer extends Container {
     })
   }
 
-  fetchUser (url, data) {
+  fetchUser = (url, data) => {
     fetch(url, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
@@ -31,13 +31,17 @@ class UserContainer extends Container {
     .then(res => res.json())
     .then(JSON.parse) //whyyy??? 
     .then((data) => {
+      const currentUser = {
+        username: data.username,
+        full_name: data.full_name,
+        profile_picture: data.profile_picture,
+        returning_user: data.returning_user,
+        logged_in: data.logged_in
+      }
       this.setState({
-        currentUser: {
-          username: data.username,
-          full_name: data.full_name,
-          profile_picture: data.profile_picture
-        }
+        currentUser: currentUser
       })
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
     });
   }
 }
