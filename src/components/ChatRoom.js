@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ChatPrompt from './ChatPrompt'
+import ChatPrompt from './ChatPrompt';
+import io from 'socket.io-client';
 require('dotenv').config({ path: '../../' })
 
 class ChatRoom extends Component {
@@ -13,7 +14,31 @@ class ChatRoom extends Component {
   async componentDidMount() {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/chat`)
     //const json = await response.json();
-    await this.setState({ chatlog: [ "hello", "whats popping", "what is this ?"]})
+    await this.setState({ chatlog: [ "when does the game start?","Has anyone ever played?", "hello", "whats popping", "what is this ?"]})
+    this.socket = io('http://localhost:5001');
+
+    // Wait for new messages
+    const socket = this.socket;
+    socket.on('message', (messageData) => {
+      this._handleOnNewMessage(messageData);
+    });
+  }
+
+  _handleOnNewMessage = (messageData) => {
+    console.log(messageData.chatMessage);
+    const oldMessageLog = this.state.chatlog;
+    oldMessageLog.shift();
+    const newMessageLog = [...oldMessageLog, messageData.chatMessage];
+    this.setState({ chatlog: newMessageLog });
+  }
+
+  _handleOnSubmit = (event) => {
+    event.preventDefault();
+    let messageInput = event.target.children[0];
+    const socket = this.socket;
+
+    socket.emit('message', { chatMessage: messageInput.value });
+    messageInput.value = "";
   }
 
   renderChat(chatlog) {
@@ -32,7 +57,10 @@ class ChatRoom extends Component {
     return (
       <div>
         { chat }
-        <input type="text" name="chatInput" placeholder="Ready to play?"></input>
+        <form onSubmit={this._handleOnSubmit}>
+          <input type="text" name="chatInput" placeholder="Ready to play?"></input>
+          <button type="submit">Send</button>
+        </form>
       </div>
     );
   }
