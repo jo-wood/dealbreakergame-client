@@ -5,21 +5,21 @@ class UserContainer extends Container {
     currentUser: null
   };
 
-  addUser (instaResponse) {
-    this.setState({ 
-      username: instaResponse.username,
-      full_name: instaResponse.full_name,
-      profile_picture: instaResponse.profile_picture
-    })
-  }
+  // addUser (instaResponse) {
+  //   this.setState({ 
+  //     username: instaResponse.username,
+  //     full_name: instaResponse.full_name,
+  //     profile_picture: instaResponse.profile_picture
+  //   })
+  // }
 
-  removeUser () {
-    this.setState({ 
-      username: null,
-      full_name: null,
-      profile_picture: null
-    })
-  }
+  // removeUser () {
+  //   this.setState({ 
+  //     username: null,
+  //     full_name: null,
+  //     profile_picture: null
+  //   })
+  // }
 
   fetchUser = (url, data) => {
     fetch(url, {

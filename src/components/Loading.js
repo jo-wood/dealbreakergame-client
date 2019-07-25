@@ -37,7 +37,9 @@ class Loading extends Component {
               <p>{ userInfo.state.currentUser != null ? userInfo.state.currentUser.username : null }</p>
               <p>{ userInfo.state.currentUser != null ? userInfo.state.currentUser.full_name : null }</p>
               <img src={ userInfo.state.currentUser != null ? userInfo.state.currentUser.profile_picture : null }/>
-              <div>{ userInfo.state.currentUser != null ? <Redirect to='/waiting' /> : null }</div>
+              
+              <div>{ userInfo.state.currentUser != null && userInfo.state.currentUser.returning_user === true ? 
+              <Redirect to='/waiting' /> : null }</div>
             </div>
           )}
         </Subscribe>      
