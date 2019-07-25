@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Question from './Question';
 import Host from './Host';
 import GameTimer from './GameTimer';
-import GameMembers from './GameMembers'
+import GameMembers from './GameMembers';
 require('dotenv').config({ path: '../../' })
 
 class Game extends Component {
