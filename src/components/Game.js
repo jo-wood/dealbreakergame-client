@@ -28,7 +28,6 @@ class Game extends Component {
     const json = await response.json();
     await this.setState({ questions: json });
     this.interval = setInterval(() => this.setState({ timerTime: this.state.timerTime - 1 }), 1000);
-    
   }
 
   componentWillUnmount() {

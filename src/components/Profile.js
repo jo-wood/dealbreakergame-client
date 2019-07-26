@@ -5,8 +5,10 @@ require('dotenv').config({ path: '../../' })
 class Profile extends Component {
   constructor() {
     super();
-    this.state = { user_data: null,
-                  user_matches: [1, 2] }
+    this.state = { 
+      user_data: null,
+      user_matches: [1, 2] 
+    }
   }
   
   async componentDidMount() {

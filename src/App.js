@@ -13,6 +13,7 @@ import Loading from './components/Loading';
 import Footer from './components/Footer';
 import WaitingRoom from './components/WaitingRoom';
 import SignUp from './components/SignUp';
+import Results from './components/Results';
 
 // ------ Unstated
 import { Provider } from 'unstated';
@@ -35,6 +36,7 @@ function App() {
             <Route path="/profile" exact component={Profile}/>
             <Route path="/waiting" exact component={WaitingRoom}/>
             <Route path="/signup" exact component={SignUp}/>
+            <Route path="/results" exact component={Results}/>
           </Switch>
           <Footer/>
         </div>
