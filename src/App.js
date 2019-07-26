@@ -2,17 +2,17 @@ import React from 'react';
 import './styles/main.scss';
 import './styles/question.css';
 import './styles/profile.css';
-import Nav from './components/Nav';
-import Home from './components/Home';
+import Nav from './components/Nav/Nav';
+import Home from './components/Home/Home';
 //import Login from './components/Login';
-import Game from './components/Game'
+import Game from './components/Game/Game'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Privacy from './components/Privacy';
-import Profile from './components/Profile';
-import Loading from './components/Loading';
-import Footer from './components/Footer';
-import WaitingRoom from './components/WaitingRoom';
-import SignUp from './components/SignUp';
+import Privacy from './components/Footer/Privacy';
+import Profile from './components/Profile/Profile';
+import Loading from './components/Home/Loading';
+import Footer from './components/Footer/Footer';
+import Waiting from './components/Waiting/Waiting';
+import SignUp from './components/Home/SignUp';
 
 // ------ Unstated
 import { Provider } from 'unstated';
@@ -33,7 +33,7 @@ function App() {
             <Route path="/game" exact component={Game} />
             <Route path="/privacy" exact component={Privacy}/>
             <Route path="/profile" exact component={Profile}/>
-            <Route path="/waiting" exact component={WaitingRoom}/>
+            <Route path="/waiting" exact component={Waiting}/>
             <Route path="/signup" exact component={SignUp}/>
           </Switch>
           <Footer/>

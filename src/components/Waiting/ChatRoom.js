@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import ChatPrompt from './ChatPrompt';
+import ChatPrompt from '../Footer/ChatPrompt';
 import io from 'socket.io-client';
+import { Subscribe } from 'unstated';
 require('dotenv').config({ path: '../../' })
 
 class ChatRoom extends Component {

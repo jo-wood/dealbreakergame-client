@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Subscribe } from 'unstated';
 
 class ChatPrompt extends Component {
   render() {

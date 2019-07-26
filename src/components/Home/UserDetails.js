@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
 /* Import Components */
-import Select from '../FormComponents/Select';
-import RangeInput from '../FormComponents/RangeInput'
-import Button from '../FormComponents/Button';
+import Select from '../../UtilComponents/Select';
+import RangeInput from '../../UtilComponents/RangeInput'
+import Button from '../../UtilComponents/Button';
 
 class UserDetails extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HostPoster from '../images/host.jpeg';
+import HostPoster from '../../images/host.jpeg';
 
 class Host extends Component {
   constructor() {
