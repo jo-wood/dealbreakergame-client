@@ -40,6 +40,8 @@ class Loading extends Component {
               
               <div>{ userInfo.state.currentUser != null && userInfo.state.currentUser.returning_user === true ? 
               <Redirect to='/waiting' /> : null }</div>
+               <div>{ userInfo.state.currentUser != null && userInfo.state.currentUser.returning_user === false ? 
+              <Redirect to='/signup' /> : null }</div>
             </div>
           )}
         </Subscribe>
