@@ -52,7 +52,7 @@ class Loading extends Component {
               <img src={ userInfo.state.currentUser != null ? userInfo.state.currentUser.profile_picture : null }/>
             </div>
           )}
-        </Subscribe>      
+        </Subscribe>
       </div>
     );
   
