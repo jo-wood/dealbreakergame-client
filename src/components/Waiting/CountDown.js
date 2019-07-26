@@ -1,63 +1,69 @@
 import React, { Component } from 'react';
-import { Subscribe } from 'unstated';
 import { Redirect } from 'react-router-dom';
-import WaitingContainer from '../../containers/WaitingContainer';
 import CountClock from './CountClock'
 
 class CountDown extends Component {
-  state = {
-      nextGameStarts: new Date(Date.now()).setHours(20, 0, 0, 0),
-      timeLeftStamp: Date.now(),
+    constructor(props) {
+      super(props);
+        this.state = {
+          nextGameStarts: new Date(Date.now()).setHours(20, 0, 0, 0),
+          moveIntoGame: false,
+          hours: 99,
+          minutes: 99,
+          seconds: 99
+      }
+    }
+
+
+    componentDidMount() {
+      const { hours, minutes, seconds, nextGameStarts } = this.state;
+      this.interval = setInterval(() => {
+      if (hours === 0 && minutes === 0 && seconds === 0) {
+          this.setState({ moveIntoGame: true })
+          this.stop(nextGameStarts);
+      }
+      this.calculateCountdown();
+      }, 1000);
+    }
+      componentWillUnmount() {
+        this.stop();
+      }
+
+  stop(currentGame) {
+    const nextDate = new Date(currentGame);
+    //set to tomorrow at 8 PM
+    const tomorrow = nextDate.setDate(nextDate.getDate() + 1);
+    clearInterval(this.interval);
+    this.setState({
+      nextGameStarts: tomorrow,
+      moveIntoGame: false,
       hours: 0,
       minutes: 0,
       seconds: 0
-    }
-  // note that since 1 day seperates the countdown, the actual date rendered by the date is only for time keeping
+    })
+  }
 
-  countdown(hours, minutes, seconds) {
+  calculateCountdown() {
+    const {nextGameStarts} = this.state;
+    let hours = new Date(nextGameStarts).getHours() - new Date(Date.now()).getHours();
+    let minutes = 60 - new Date(Date.now()).getMinutes();
+    let seconds = 60 - new Date(Date.now()).getSeconds();
     this.setState({
       hours,
       minutes,
-      seconds
+      seconds 
     })
-  };
-
-  calculateCountdown() {
-    let { nextGameStarts } = this.state;
-    console.log(nextGameStarts);
-    let { timeLeftStamp } = this.state;
-
-    //difference in seconds
-    let hours = new Date(nextGameStarts).getHours() - new Date(timeLeftStamp).getHours() ;
-    let minutes = new Date(nextGameStarts).getMinutes() - new Date(timeLeftStamp).getMinutes() ;
-    let seconds = new Date(nextGameStarts).getSeconds() - new Date(timeLeftStamp).getSeconds() ;
-
-    this.countdown(hours, minutes, seconds);
-    this.checkCountdown(nextGameStarts)
-
-  }
-
-  checkCountdown(nextGameStarts, setNextGame) {
-    const {hours, minutes, seconds} = this.state;
-    if (Date.now() > nextGameStarts){
-      setNextGame();
-    } else {
-      return (
-        <div>
-          <CountClock count={{hours, minutes, seconds}} />
-        </div>
-      );
-    }
   }
 
   render() {
+    const {hours, minutes, seconds, moveIntoGame} = this.state;
+    const countdown = (moveIntoGame) ? 
+      (<div><Redirect to="/game" /></div>) :
+        (<div><CountClock countdown={{ hours, minutes, seconds}} /></div>)
+        
     return (
       <div>
-            return (
-              <div>
-                {this.calculateCountdown}
-              </div>
-            )}
+        {countdown}
       </div>
     );
   }
