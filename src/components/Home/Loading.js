@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Subscribe } from 'unstated';
 import { Redirect } from 'react-router-dom'
 
-import UserContainer from '../../containers/users';
+import UserContainer from './users';
 
 
 // Get OAUTH Instagram code from url params
