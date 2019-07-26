@@ -10,7 +10,7 @@ class Waiting extends Component {
       <div>
           <h2>The Game Breaks Out At 8PM</h2>
             <CountDown />
-            <ChatRoom />   
+            {/* <ChatRoom /> */}
       </div>
     );
   }

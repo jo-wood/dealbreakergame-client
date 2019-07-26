@@ -6,7 +6,7 @@ class CountClock extends Component {
     while (String(value).length < 2) {
       return '0' + value;
     }
-  }  
+  }
   checkCountType(time, timeType) {
     return (
       <div className="Countdown-col-element">
@@ -16,17 +16,16 @@ class CountClock extends Component {
     )
   }
   render() {
-    const { count } = this.props;
-    const stopWatch = new Date(count);
-    const hour = this.checkCountType(stopWatch.getHours(), 'HOURS');
-    const min = this.checkCountType(stopWatch.getMinutes(), 'MINS');
-    const sec = this.checkCountType(stopWatch.getSeconds(), 'SECONDS');
+    const { hours, minutes, seconds } = this.props.count;
+    const hour = (<div>{this.checkCountType(hours, 'HOURS')}</div>);
+    const min = (<div>{this.checkCountType(minutes, 'MINS')}</div>);
+    const sec = (<div>{this.checkCountType(seconds, 'SECONDS')}</div>);
     return (
-    <div>
-      <div className="Countdown-col">{hour}</div>
-      <div className="Countdown-col">{min}</div>
-      <div className="Countdown-col">{sec}</div>   
-    </div>
+      <div>
+        <div className="Countdown-col">{hour}</div>
+        <div className="Countdown-col">{min}</div>
+        <div className="Countdown-col">{sec}</div>
+      </div>
     );
   }
 }
