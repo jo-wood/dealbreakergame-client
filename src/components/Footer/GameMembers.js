@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SingleContestent from './SingleContestent'
+import SingleContestent from '../../UtilComponents/SingleContestent'
 require('dotenv').config({ path: '../../' })
 
 class GameMembers extends Component {

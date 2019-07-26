@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChatPrompt from './ChatPrompt';
+import ChatPrompt from '../Footer/ChatPrompt';
 import io from 'socket.io-client';
 require('dotenv').config({ path: '../../' })
 
@@ -12,12 +12,8 @@ class ChatRoom extends Component {
   }
   
   async componentDidMount() {
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/chat`)
-    //const json = await response.json();
-    await this.setState({ chatlog: [ "when does the game start?","Has anyone ever played?", "hello", "whats popping", "what is this ?"]})
+    await this.setState({ chatlog: [ "when does the game start?","Has anyone ever played?", "hello", "I can't wait to find love", "what is this ?"]})
     this.socket = io('http://localhost:5001');
-
-    // Wait for new messages
     const socket = this.socket;
     socket.on('message', (messageData) => {
       this._handleOnNewMessage(messageData);

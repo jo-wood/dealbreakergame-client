@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Subscribe } from 'unstated';
 import { Redirect } from 'react-router-dom'
 
-import UserContainer from '../containers/users';
+import UserContainer from './users';
 
 
 // Get OAUTH Instagram code from url params
@@ -40,7 +40,7 @@ class Loading extends Component {
               
               <div>{ userInfo.state.currentUser != null && userInfo.state.currentUser.returning_user === true ? 
               <Redirect to='/waiting' /> : null }</div>
-               <div>{ userInfo.state.currentUser != null && userInfo.state.currentUser.returning_user === false ? 
+              <div>{ userInfo.state.currentUser != null && userInfo.state.currentUser.returning_user === false ? 
               <Redirect to='/signup' /> : null }</div>
             </div>
           )}

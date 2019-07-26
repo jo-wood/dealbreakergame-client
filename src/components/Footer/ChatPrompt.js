@@ -4,7 +4,7 @@ class ChatPrompt extends Component {
   render() {
     const { prompt } = this.props;
     return (
-      <div class="chatPrompt">
+      <div className="chatPrompt">
           <p>{prompt}</p>
       </div>
     );
