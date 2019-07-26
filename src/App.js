@@ -12,6 +12,7 @@ import Loading from './components/Home/Loading';
 import Footer from './components/Footer/Footer';
 import Waiting from './components/Waiting/Waiting';
 import SignUp from './components/Home/SignUp';
+import Results from './components/Results';
 // styles
 import './styles/main.scss';
 import './styles/question.css';
@@ -34,6 +35,7 @@ function App() {
               <Route path="/profile" exact component={Profile}/>
               <Route path="/waiting" exact component={Waiting}/>
               <Route path="/signup" exact component={SignUp}/>
+              <Route path="/results" exact component={Results}/>
             </Switch>
         <Footer />
         </div>

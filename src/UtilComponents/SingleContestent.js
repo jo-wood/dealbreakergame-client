@@ -4,7 +4,7 @@ class SingleContestent extends Component {
   render() {
     const { user } = this.props;
     return (
-      <div class="chatPrompt">
+      <div className="singleContestent">
           <a href="#">{user}</a>
       </div>
     );

@@ -44,7 +44,7 @@ class Loading extends Component {
               <Redirect to='/signup' /> : null }</div>
             </div>
           )}
-        </Subscribe>      
+        </Subscribe>
       </div>
     );
   

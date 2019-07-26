@@ -6,12 +6,11 @@ class GameTimer extends Component {
   constructor() {
     super();
     this.state = {
-      chatlog: null,
     }
   }
 
   render() {
-      const value = 9;
+      const value = this.props.timeLeft;
     return (
       <div>
           <CircularProgressbar value={value} maxValue={15} text={value} height={"15px"} />
