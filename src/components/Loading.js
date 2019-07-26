@@ -42,7 +42,7 @@ class Loading extends Component {
               <Redirect to='/waiting' /> : null }</div>
             </div>
           )}
-        </Subscribe>      
+        </Subscribe>
       </div>
     );
   

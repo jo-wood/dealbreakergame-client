@@ -11,7 +11,9 @@ class Game extends Component {
     this.state = {
       showMembers: true,
       questions: null,
-      current_question: 0
+      current_question: 0,
+      timerTime: 15,
+      game_over: false
     }
   }
 
@@ -24,7 +26,13 @@ class Game extends Component {
   async componentDidMount() {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/questions`)
     const json = await response.json();
-    await this.setState({ questions: json })
+    await this.setState({ questions: json });
+    this.interval = setInterval(() => this.setState({ timerTime: this.state.timerTime - 1 }), 1000);
+    
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   renderQuestion(questions) {
@@ -39,13 +47,20 @@ class Game extends Component {
   }
 
   render() {
-    const { questions } = this.state;
+    const { questions, timerTime } = this.state;
     const question = questions ? (this.renderQuestion(questions)) : (<h3>Loading Question ...</h3>)
+    if (this.state.timerTime === 0 && this.state.current_question <= 9){
+      this.setState({
+        timerTime: 15,
+        current_question: this.state.current_question + 1});
+    } else if (this.state.current_question === 10) {
+      this.setState({game_over: true})
+    }
     return (
       <div>
         <Host/>
         { question[this.state.current_question]}
-        <GameTimer/>
+        <GameTimer timeLeft={timerTime}/>
         <button>Dealbreaker</button>
         <button onClick={this.toggle}>Show Contestents</button>
         {this.state.showMembers && <GameMembers/>}
