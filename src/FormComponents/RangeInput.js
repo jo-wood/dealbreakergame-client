@@ -14,6 +14,7 @@ const RangeInput = (props) => {
             max={props.max}
             onChange={props.handleChange}
             />
+            <label htmlFor={props.name} className="form-label">{props.value}</label>
         </div>
     )
 }
