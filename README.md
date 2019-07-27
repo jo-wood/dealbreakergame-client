@@ -1,4 +1,4 @@
-![Dealbreaker Logo]('./src/images/favicon.png')
+![Dealbreaker Logo](./src/images/favicon.png)
 # Dealbreaker - Real time dating application
 
 Another dating app?! These apps are becoming more stressful than job interviews...
