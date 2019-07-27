@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import Select from '../../UtilComponents/Select';
 import RangeInput from '../../UtilComponents/RangeInput'
 import Button from '../../UtilComponents/Button';
+import Cookies from 'universal-cookie';
 
 class UserDetails extends Component {
   constructor(props) {
@@ -70,7 +71,13 @@ class UserDetails extends Component {
         },
       }).then(response => {
         response.json().then(data =>{
-          console.log("Successful" + data);
+          console.log("Successful: " + data);
+          const dataObject = JSON.parse(data);
+          if (dataObject.status === "completed") {
+            const cookies = new Cookies();
+            cookies.set('user_id', dataObject.id, { path: '/' });
+            console.log("new cookie created");
+          }
         })
     })
   }
