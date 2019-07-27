@@ -1,9 +1,16 @@
 import { Container } from 'unstated';
+import Cookies from 'universal-cookie';
 
 class UserContainer extends Container {
   state = {
     currentUser: null
   };
+
+
+  setNewCookie = (userId) => {
+    const cookies = new Cookies();
+    cookies.set('user_id', userId, { path: '/' });
+  }
 
   fetchUser = (url, data) => {
     fetch(url, {
@@ -16,6 +23,7 @@ class UserContainer extends Container {
     .then(JSON.parse) //whyyy??? 
     .then((data) => {
       const currentUser = {
+        user_id: data.user_id,
         instagram_id: data.instagram_id,
         username: data.username,
         full_name: data.full_name,
@@ -28,6 +36,9 @@ class UserContainer extends Container {
       this.setState({
         currentUser: currentUser
       })
+      if (data.user_id != null) {
+        this.setNewCookie(data.user_id);
+      }
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
     });
   }
