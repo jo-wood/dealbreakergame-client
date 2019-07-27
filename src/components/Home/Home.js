@@ -13,9 +13,9 @@ function Home() {
         <title>Login</title>
         <meta name="description" content="Dealbreaker Login Page, users must be logged in to play the live dating game" />
       </Helmet>
-      <h2>(Home Page)</h2>
-      <h2>Welcome to Real Time Dating Game Show</h2>
-      <a href={oauth_url}>SIGN IN WITH INSTAGRAM</a>
+
+      <h2 className="title"><strong>Welcome to Real Time</strong> <br></br> Dating Game Show</h2>
+      <a href={oauth_url} className="loginButton" ><strong>SIGN IN</strong> WITH INSTAGRAM</a>
       {/* <form method="get" action="http://localhost:5000/sessions">
         <button type="submit">SIGN IN</button>
       </form> */}

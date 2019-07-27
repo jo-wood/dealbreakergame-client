@@ -16,7 +16,8 @@ import Results from './components/Game/Results';
 // styles
 import './styles/main.scss';
 import './styles/question.css';
-import './styles/profile.css';
+import './styles/Home.scss';
+// import './styles/profile.css';
 
 require('dotenv').config()
 
