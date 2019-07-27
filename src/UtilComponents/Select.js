@@ -8,6 +8,7 @@ const Select = (props) => {
               name={props.name}
               value={props.value}
               onChange={props.handleChange}
+              placeholder={props.placeholder}
               >
               <option value="" disabled>{props.placeholder}</option>
               {props.options.map(option => {

@@ -25,8 +25,8 @@ class UserDetails extends Component {
         ageYear: 2001,
         identifyAs: '',
         interestedIn: '',
-        ageMin: this.age,
-        ageMax: this.age
+        ageMin: 18,
+        ageMax: 50
 
       },
 
@@ -108,6 +108,7 @@ class UserDetails extends Component {
         <Select
                 title={"Month"}
                 name={'ageMonth'}
+                placeholder={"select"}
                 options={this.state.monthOptions}
                 value={this.state.user.ageMonth}
                 handleChange={this.handleInput}
@@ -154,7 +155,7 @@ class UserDetails extends Component {
                 name={'ageMin'}
                 value={this.state.user.ageMin}
                 min={18}
-                max={50}
+                max={80}
                 handleChange ={this.handleInput}
                 /> {/* Age Perference Selection */}
                 <label>{this.state.ageMin}</label> 
@@ -164,7 +165,7 @@ class UserDetails extends Component {
                 name={'ageMax'}
                 value={this.state.user.ageMax}
                 min={18}
-                max={50}
+                max={80}
                 handleChange ={this.handleInput}
                 /> {/* Age Perference Selection */}
                 <label>{this.state.ageMax}</label>
