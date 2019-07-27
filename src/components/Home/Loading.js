@@ -8,13 +8,12 @@ import UserContainer from './users';
 // Get OAUTH Instagram code from url params
 let params = (new URL(document.location)).searchParams;
 let code = params.get('code');
-console.log(code);
 
 const url = process.env.REACT_APP_SESSIONS_URL || 'https://dealbreakergame-server.herokuapp.com/sessions';
 const data = {
   code: code,
   test: "test"
- };
+};
 
 
 class Loading extends Component {
@@ -36,7 +35,7 @@ class Loading extends Component {
               
               <p>{ userInfo.state.currentUser != null ? userInfo.state.currentUser.username : null }</p>
               <p>{ userInfo.state.currentUser != null ? userInfo.state.currentUser.full_name : null }</p>
-              <img src={ userInfo.state.currentUser != null ? userInfo.state.currentUser.profile_picture : null }/>
+              <img src={ userInfo.state.currentUser != null ? userInfo.state.currentUser.profile_picture : null } alt="insta_img"/>
               
               <div>{ userInfo.state.currentUser != null && userInfo.state.currentUser.returning_user === true ? 
               <Redirect to='/waiting' /> : null }</div>

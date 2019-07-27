@@ -19,7 +19,7 @@ class Game extends Component {
       questions: null,
       currentQuestionData: null,
       questionCount: 1,
-      timerTime: null,
+      timerTime: undefined,
       game_over: false
     }
   }
@@ -32,10 +32,12 @@ class Game extends Component {
   };
 
   _handleSocketMessage(type, payload) {
+
     switch (type) {
       case 'initializeGame':
         this.setState({
           currentQuestionData: payload,
+          questionCount: this.state.questionCount + 1
         });
         break;
       case 'gameRoomTimer':
@@ -46,7 +48,8 @@ class Game extends Component {
       case 'NextGameRoomQuestion':
         this.setState({
           currentQuestionData: payload,
-        });        
+          questionCount: this.state.questionCount + 1
+        });
         break;
       default:
         console.log('socket message', type);       
@@ -58,21 +61,31 @@ class Game extends Component {
     this.socket = io('http://localhost:5001');
     const socket = this.socket;
     
-    socket.emit('gameStarted');
+    if (this.state.questionCount === 1) {
+      socket.emit('gameStarted');
+      socket.on('initializeGame', (startData) => {
+        this._handleSocketMessage('initializeGame', startData);
+      });
+    }
 
-    socket.on('initializeGame', (startData) => {
-      this._handleSocketMessage('initializeGame', startData);
+
+
+    socket.on('gameRoomTimer', (timerTime) => {
+      this._handleSocketMessage('gameRoomTimer', timerTime);
     });
 
-    socket.on('gameRoomTimer', (timerData) => {
-      this._handleSocketMessage('gameRoomTimer', timerData);
-    });
+    if (!this.state.timerTime > 13 ) {
+      socket.on('NextGameRoomQuestion', (questionData) => {
+        this._handleSocketMessage('NextGameRoomQuestion', questionData);
+      });
+    }
 
-    socket.on('NextGameRoomQuestion', (questionData) => {
-      this._handleSocketMessage('NextGameRoomQuestion', questionData);
-    });
+
   }
+
   _submitAnswer(q_id, answer) {
+    console.log(answer)
+
     const { currentQuestionData, user_id } = this.state;
     const sendAnswer = {};
     const optionA = currentQuestionData['optionA'],
@@ -101,7 +114,7 @@ class Game extends Component {
 
   render() {
     const { currentQuestionData, questionCount, timerTime, showMembers } = this.state;
-    const renderQ = currentQuestionData ? (<div><Question submit={this._submitAnswer} q={currentQuestionData} /></div>) : ( <h3> Loading Question... </h3>)
+    const renderQ = (currentQuestionData) && (<div><Question key={currentQuestionData.id} submit={this._submitAnswer} q={currentQuestionData} /></div>)
     const toggleContestents = showMembers && (<div><GameMembers/></div>);
     const gameOver = (questionCount === 10) && (<div><Redirect to='/results'/></div>);
     

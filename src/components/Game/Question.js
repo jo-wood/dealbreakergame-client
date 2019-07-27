@@ -4,14 +4,14 @@ import Option from './Option'
 class Question extends Component {
 
   _renderOptions(question) {
-    const { id, optionA, optionB, optionC, optionD } = question;
+    const { optionA, optionB, optionC, optionD } = question;
+    let optionId = 0;
     const _submitAnswer = this.props.submit;
     const options = [ optionA, optionB, optionC, optionD ]
     return options.map(option => {
+      optionId++;
       return (
-        <div>
-          <Option key={id} submit={ _submitAnswer } option={option} />
-        </div>
+          <Option key={optionId} submit={ _submitAnswer } option={option} />
       );
     })
   }  
@@ -20,7 +20,7 @@ class Question extends Component {
     const showOptions = (<div>{this._renderOptions(q)}</div>)
     return (
       <div className="hiddenCB">
-        <div id={q.id}>
+        <div>
           <h1>{q.context}</h1>
           {showOptions}
         </div>   
