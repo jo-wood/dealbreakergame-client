@@ -9,21 +9,6 @@ class UserDetails extends Component {
   constructor(props) {
     super(props);
 
-
-    // instagram_id: userObject.id,
-    // username: userObject.usernmae,
-    // full_name: userObject.full_name,
-    // access_token: userObject.access_token,
-    // birthdate: userObject.birthdate,
-    // identifyAs: userObject.identifyAs,
-    // interestedIn: userObject.interestedIn,
-    // age_perference_min: userObject.ageMin,
-    // age_perference_max: userObject.ageMax,
-    // image_url: userObject.profile_picture,
-    // image_url_hd: userObject.profile_picture_hd 
-
-
-
     this.state = {
       user: {
 
@@ -37,7 +22,6 @@ class UserDetails extends Component {
         ageMonth: 9,
         ageDay: 2,
         ageYear: 2001,
-        birthdate: `${this.ageYear}-${this.ageMonth}-${this.ageDay}`,
         identifyAs: '',
         interestedIn: '',
         ageMin: this.age,
@@ -56,7 +40,24 @@ class UserDetails extends Component {
 
   /* This life cycle hook gets executed when the component mounts */
 
-  handleFormSubmit(e) {
+  componentDidMount = () => {
+    const currentUserString = localStorage.getItem('currentUser');
+    const currentUser = JSON.parse(currentUserString);
+    
+    this.setState({
+      user: {
+        instagram_id: currentUser.instagram_id,
+        username: currentUser.username,
+        full_name: currentUser.full_name,
+        access_token: currentUser.access_token,
+        profile_picture: currentUser.profile_picture,
+        profile_picture_hd: currentUser.profile_picture_hd
+      }
+    }) 
+
+  }
+
+  handleFormSubmit = (e) => {
     e.preventDefault();
     let userData = this.state.user;
 
@@ -90,6 +91,8 @@ class UserDetails extends Component {
 
 
   render() {
+    console.log('CURRENT-STATE: ', this.state.user);
+
     return (
       <form className="container" onSubmit={this.handleFormSubmit}>
         
@@ -161,6 +164,7 @@ class UserDetails extends Component {
         <br></br>
         <Button
                 title={"Thats Me"}
+                action={this.handleFormSubmit}
             /> { /*Submit */ }
       </form>
     );
