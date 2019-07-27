@@ -3,6 +3,7 @@ import Question from './Question';
 import Host from './Host';
 import GameTimer from './GameTimer';
 import GameMembers from '../Footer/GameMembers';
+import { Redirect } from 'react-router-dom'
 require('dotenv').config({ path: '../../' })
 
 class Game extends Component {
@@ -42,21 +43,30 @@ class Game extends Component {
         </div>
       )
     });
+  }
 
+  gameDone = (state) => {
+    if (state.timerTime === 0 && state.current_question <=9){
+      this.setState({
+        timerTime: 15,
+        current_question: this.state.current_question + 1
+      });
+      return false;
+    } else if (state.current_question === 10) {
+      return (
+        <Redirect to='/results' />
+      )
+    }
   }
 
   render() {
     const { questions, timerTime } = this.state;
     const question = questions ? (this.renderQuestion(questions)) : (<h3>Loading Question ...</h3>)
-    if (this.state.timerTime === 0 && this.state.current_question <= 9){
-      this.setState({
-        timerTime: 15,
-        current_question: this.state.current_question + 1});
-    } else if (this.state.current_question === 10) {
-      this.setState({game_over: true})
-    }
+
+
     return (
       <div>
+        {this.gameDone(this.state)}
         <Host/>
         { question[this.state.current_question]}
         <GameTimer timeLeft={timerTime}/>

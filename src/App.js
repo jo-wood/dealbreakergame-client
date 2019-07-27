@@ -12,7 +12,7 @@ import Loading from './components/Home/Loading';
 import Footer from './components/Footer/Footer';
 import Waiting from './components/Waiting/Waiting';
 import SignUp from './components/Home/SignUp';
-import Results from './components/Results';
+import Results from './components/Game/Results';
 // styles
 import './styles/main.scss';
 import './styles/question.css';
