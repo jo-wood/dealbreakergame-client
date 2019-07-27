@@ -1,9 +1,15 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
 require('dotenv').config({ path: '../../' })
 
 function Privacy() {
   return (
     <div >
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Privacy Policy</title>
+            <meta name="description" content="Dealbreaker live dating game, privacy policy" />
+        </Helmet>
       <h1>Privacy Policy</h1>
 
         <p>Effective date: July 22, 2019</p>

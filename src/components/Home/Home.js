@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
 require('dotenv').config({ path: '../../' })
 
 function Home() {
@@ -7,6 +8,11 @@ function Home() {
 
   return (
     <div >
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Login</title>
+        <meta name="description" content="Dealbreaker Login Page, users must be logged in to play the live dating game" />
+      </Helmet>
       <h2>(Home Page)</h2>
       <h2>Welcome to Real Time Dating Game Show</h2>
       <a href={oauth_url}>SIGN IN WITH INSTAGRAM</a>
