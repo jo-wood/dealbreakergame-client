@@ -12,7 +12,6 @@ class Option extends Component {
         <div>
           <input 
             key={key}
-            ref={{option, q_id: key }}
             onClick={this._handleClick} 
             type="checkbox"/>
           <label for={option}>{option}</label>

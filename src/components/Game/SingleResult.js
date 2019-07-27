@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 
 class Host extends Component {
-  constructor() {
-    super();
-    this.state = {
-      chatlog: null,
-    }
-  }
-
   render() {
     return (
       <div>

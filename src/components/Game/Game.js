@@ -5,6 +5,7 @@ import GameTimer from './GameTimer';
 import GameMembers from '../Footer/GameMembers';
 import { Redirect } from 'react-router-dom'
 import {Helmet} from "react-helmet";
+import io from 'socket.io-client';
 require('dotenv').config({ path: '../../' })
 
 class Game extends Component {
@@ -12,57 +13,72 @@ class Game extends Component {
     super();
     this.state = {
       user_id: '',
-      showMembers: true,
+      userPool: {},
+      showMembers: false,
       storeUserQandA: null,
       questions: null,
-      current_question: '',
-      timerTime: 15,
+      currentQuestionData: null,
+      questionCount: 1,
+      timerTime: null,
       game_over: false
     }
   }
 
   toggle = () => {
+    const {showMembers} = this.state;
     this.setState({
-      showMembers: false
+      showMembers: !showMembers
     });
   };
 
-  gameOver = () => {
-    const { timerTime, game_over } = this.state;    
-    if (timerTime === 0){
-      this.setState({
-        timerTime: 15,
-        current_question: ''
-      });
-      return false;
-    } else if (game_over) {
-      return (
-        <Redirect to='/results' />
-      )
-    }    
+  _handleSocketMessage(type, payload) {
+    switch (type) {
+      case 'initializeGame':
+        this.setState({
+          currentQuestionData: payload,
+        });
+        break;
+      case 'gameRoomTimer':
+        this.setState({
+          timerTime: payload
+        });        
+        break;
+      case 'NextGameRoomQuestion':
+        this.setState({
+          currentQuestionData: payload,
+        });        
+        break;
+      default:
+        console.log('socket message', type);       
+        break;
+    }
   }
 
-  async componentDidMount() {
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/questions`)
-    const json = await response.json();
-    await this.setState({ 
-      // change this to receive question from socket one at a time ( only will need currentQuestion)
-      current_question: json
+  componentDidMount() {
+    this.socket = io('http://localhost:5001');
+    const socket = this.socket;
+    
+    socket.emit('gameStarted');
+
+    socket.on('initializeGame', (startData) => {
+      this._handleSocketMessage('initializeGame', startData);
     });
-    this.interval = setInterval(() => this.setState((prevState) => ({ timerTime: prevState.timerTime - 1 })), 1000);   
-  }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
+    socket.on('gameRoomTimer', (timerData) => {
+      this._handleSocketMessage('gameRoomTimer', timerData);
+    });
 
+    socket.on('NextGameRoomQuestion', (questionData) => {
+      this._handleSocketMessage('NextGameRoomQuestion', questionData);
+    });
+  }
   _submitAnswer(q_id, answer) {
-    const { current_question, user_id } = this.state;
+    const { currentQuestionData, user_id } = this.state;
     const sendAnswer = {};
-    const optionA = current_question['optionA'],
-          optionB = current_question['optionB'],
-          optionC = current_question['optionC'],
-          optionD = current_question['optionD'];
+    const optionA = currentQuestionData['optionA'],
+          optionB = currentQuestionData['optionB'],
+          optionC = currentQuestionData['optionC'],
+          optionD = currentQuestionData['optionD'];
     switch (answer) {
       case optionA:
         sendAnswer[q_id][user_id] = 'optionA' ;
@@ -84,13 +100,14 @@ class Game extends Component {
   }
 
   render() {
-    const { current_question, timerTime, showMembers } = this.state;
-    const renderQ = current_question ? (<div><Question submit={this._submitAnswer} q={current_question[0]} /></div>) : ( <h3> Loading Question... </h3>)
+    const { currentQuestionData, questionCount, timerTime, showMembers } = this.state;
+    const renderQ = currentQuestionData ? (<div><Question submit={this._submitAnswer} q={currentQuestionData} /></div>) : ( <h3> Loading Question... </h3>)
     const toggleContestents = showMembers && (<div><GameMembers/></div>);
-
+    const gameOver = (questionCount === 10) && (<div><Redirect to='/results'/></div>);
+    
     return (
       <div>
-        {this.gameOver()}
+        {gameOver}
         <Helmet>
             <meta charSet="utf-8" />
             <title>Live Game</title>
