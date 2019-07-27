@@ -4,6 +4,7 @@ import Host from './Host';
 import GameTimer from './GameTimer';
 import GameMembers from '../Footer/GameMembers';
 import { Redirect } from 'react-router-dom'
+import {Helmet} from "react-helmet";
 require('dotenv').config({ path: '../../' })
 
 class Game extends Component {
@@ -67,6 +68,11 @@ class Game extends Component {
     return (
       <div>
         {this.gameDone(this.state)}
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Live Game</title>
+            <meta name="description" content="Dealbreaker Game is live and matches are being made" />
+        </Helmet>
         <Host/>
         { question[this.state.current_question]}
         <GameTimer timeLeft={timerTime}/>
