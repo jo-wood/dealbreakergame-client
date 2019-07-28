@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import GameMembers from './GameMembers';
-import Privacy from './GameMembers';
+// import GameMembers from './GameMembers';
+// import Privacy from './GameMembers';
 
 class Footer extends Component {
 
