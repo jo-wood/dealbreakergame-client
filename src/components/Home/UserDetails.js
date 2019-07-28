@@ -20,16 +20,17 @@ class UserDetails extends Component {
         profile_picture: null,
         profile_picture_hd: null,
 
-        ageMonth: 9,
-        ageDay: 2,
-        ageYear: 2001,
+        ageMonth: '',
+        ageDay:'',
+        ageYear: '',
         identifyAs: '',
         interestedIn: '',
         ageMin: 18,
         ageMax: 50
 
       },
-
+      detailsUncompleted: true,
+      entriesSubmitted: new Set(),
       identifyAs: ['Male', 'Female', 'Prefer not to say'],
       interestOptions: ['Females', 'Males', 'No Perference'],
       monthOptions: ['01','02','03','04','05','06','07','08','09','10','11','12'],
@@ -86,15 +87,18 @@ class UserDetails extends Component {
    console.log(e);
     let value = e.target.value;
     let name = e.target.name;
+    let entries = this.state.entriesSubmitted;
+    entries.add(name);
     this.setState( prevState => {
        return {
-          user : {
-                   ...prevState.user, [name]: value
-                  }
+          user : {...prevState.user, [name]: value},
+          entriesSubmitted: entries,
+          detailsUncompleted: this.state.entriesSubmitted.size === 7 ? false : true
        }
     }, () => console.log(this.state.user)
     )
 }
+
 
 
   render() {
@@ -106,27 +110,26 @@ class UserDetails extends Component {
         <label htmlFor={'birthdate'} className="form-label">Birthdate</label>
 
         <Select
-                title={"Month"}
                 name={'ageMonth'}
-                placeholder={"select"}
                 options={this.state.monthOptions}
                 value={this.state.user.ageMonth}
+                placeholder={'Month'}
                 handleChange={this.handleInput}
                 /> {/* Birthmonth Selection */}
         
         <Select
-                title={"Day"}
                 name={'ageDay'}
                 options={this.state.dayOptions}
                 value={this.state.user.ageDay}
+                placeholder={'Day'}
                 handleChange={this.handleInput}
                 /> {/* Birthday Selection */}
         
         <Select
-                title={"Year"}
                 name={'ageYear'}
                 options={this.state.yearOptions}
                 value={this.state.user.ageYear}
+                placeholder={'Year'}
                 handleChange={this.handleInput}
                 /> {/* Interest Selection */}
 
@@ -173,6 +176,7 @@ class UserDetails extends Component {
         <Button
                 title={"Thats Me"}
                 action={this.handleFormSubmit}
+                disabled={this.state.detailsUncompleted}
             /> { /*Submit */ }
       </form>
     );
