@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SingleResult from './SingleResult';
 import {Helmet} from "react-helmet";
+import io from 'socket.io-client';
 
 class Host extends Component {
 
