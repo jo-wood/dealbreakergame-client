@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
 
 class Option extends Component {
-  _handleClick(e) {
-    const selectedAnswer = e.target.previousSibling;
-    const answer = selectedAnswer.getAttribute("id");
-    console.log(answer)
-  }
-
 
   render() {
-    const {  option, id, submit} = this.props;
+    const {  option, id } = this.props;
       return (
         <div>
           <input
-            id={id}
+            key={id}
             name={option}
             type="checkbox"/>
-          <label
-            htmlFor={option}
-            onClick={this._handleClick} >
-            {option}
-          </label>
+          <label id={id}>{option}</label>
         </div>
       );
   }
