@@ -3,11 +3,14 @@ import SingleResult from './SingleResult';
 import {Helmet} from "react-helmet";
 
 class Host extends Component {
-  constructor() {
-    super();
-    this.state = {
-      chatlog: null,
-    }
+
+  _handleMatchResults(matches) {
+  }
+
+
+  componentDidMount() {
+    this.socket = io('http://localhost:5001');
+    this.socket.on('userMatches', (userMatches) => this._handleMatchResults('userMatches', userMatches));
   }
 
   render() {

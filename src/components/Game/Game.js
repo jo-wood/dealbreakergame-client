@@ -15,12 +15,11 @@ class Game extends Component {
       user_id: 8,
       userPool: {},
       showMembers: false,
-      storeUserQandA: null,
-      questions: null,
+      storeUsersQandA: null,
       currentQuestionData: null,
       questionCount: 1,
       timerTime: undefined,
-      game_over: false
+      gameOver: false
     }
   }
 
@@ -32,46 +31,57 @@ class Game extends Component {
   }
 
   _handleSocketMessage(type, payload) {
-
+    const { questionCount, user_id } = this.state;
     switch (type) {
       case 'initializeGame':
-        this.setState({
-          currentQuestionData: payload,
-          questionCount: this.state.questionCount + 1
-        });
-        break;
-      case 'gameRoomTimer':
-        this.setState({
-          timerTime: payload
-        });        
-        break;
       case 'NextGameRoomQuestion':
         this.setState({
           currentQuestionData: payload,
-          questionCount: this.state.questionCount + 1
+          questionCount: questionCount + 1
         });
         break;
+      case 'gameRoomTimer':
+        this.setState({ timerTime: payload });
+        break;
+      case 'userPool':
+        this.setState({ userPool: payload });
+        break;
+      case 'userMatchPerQuestion':
+        for (let user in payload) {
+          if (user === user_id) {
+            this.setState({  storeUsersQandA: payload[user_id] });
+          }}
+        break;
+      case 'gameOver':
+        this.setState({  gameOver: true });
+        break                         
       default:
         console.log('socket message', type);       
         break;
     }
   }
 
+  _getUserInfo() {
+    let userInfo = {};
+    const currentUserString = localStorage.getItem('currentUser');
+    const currentUser = JSON.parse(currentUserString);
+    // just send id and pic so that sockets can broadcast this data back on all current users for GameMembers Component
+    // use dummy user_id since Jo not signed in yet and user_id is null
+    const user_id = currentUser.user_id || 8 ;
+    userInfo[user_id] = currentUser.profile_picture;
+    this.setState({ user_id })
+    this.socket.emit('newUser', (userInfo));
+  }
+
   componentDidMount() {
     this.socket = io('http://localhost:5001');
-    const socket = this.socket;
-    
-    socket.on('initializeGame', (startData) => {
-        this._handleSocketMessage('initializeGame', startData);
-    });
-
-    socket.on('gameRoomTimer', (timerTime) => {
-      this._handleSocketMessage('gameRoomTimer', timerTime);
-    });
-
-    socket.on('NextGameRoomQuestion', (questionData) => {
-        this._handleSocketMessage('NextGameRoomQuestion', questionData);
-    });
+    this._getUserInfo();
+    this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
+    this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
+    this.socket.on('gameRoomTimer', (timerTime) =>  this._handleSocketMessage('gameRoomTimer', timerTime));
+    this.socket.on('NextGameRoomQuestion', (questionData) => this._handleSocketMessage('NextGameRoomQuestion', questionData));
+    this.socket.on('userMatchPerQuestion', (usersAnswers) => this._handleSocketMessage('userMatchPerQuestion', usersAnswers));
+    this.socket.on('gameOver', (gameOver) => this._handleSocketMessage('gameOver', gameOver));
   }
 
   _submitAnswer = (answer) => {
@@ -85,14 +95,13 @@ class Game extends Component {
   }
 
   render() {
-    const { currentQuestionData, questionCount, timerTime, showMembers } = this.state;
+    const { currentQuestionData, timerTime, userPool, gameOver, user_id } = this.state;
     const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} _submitAnswer={this._submitAnswer} q={currentQuestionData} />)
-
-    const gameOver = (questionCount === 10) && (<Redirect to='/results'/>);
+    const sendResults = (gameOver) && ( < Redirect to= '/results' currentUser={ user_id } /> );
     
     return (
       <div>
-        {gameOver}
+        { sendResults }
         <Helmet>
             <meta charSet="utf-8" />
             <title>Live Game</title>
@@ -102,9 +111,7 @@ class Game extends Component {
         { renderQ }
         <button>Dealbreaker</button>        
         <GameTimer timeLeft={ timerTime }/>
-        <Footer route={'game'}>
-  
-        </Footer>
+        <Footer route={'game'} userPool={userPool} />
       </div>
     );
   }

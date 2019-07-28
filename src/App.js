@@ -6,10 +6,11 @@ import { Provider } from 'unstated';
 import Nav from './components/Nav/Nav';
 import Home from './components/Home/Home';
 import Game from './components/Game/Game';
-import Privacy from './components/Footer/Privacy';
+// import Privacy from './components/Footer/Privacy';
+// import Footer from './components/Footer/Footer';
+// import ChatPrompt from './components/Footer/ChatPrompt';
 import Profile from './components/Profile/Profile';
 import Loading from './components/Home/Loading';
-import Footer from './components/Footer/Footer';
 import Waiting from './components/Waiting/Waiting';
 import SignUp from './components/Home/SignUp';
 import Results from './components/Game/Results';
@@ -17,7 +18,7 @@ import Results from './components/Game/Results';
 import './styles/main.scss';
 import './styles/question.css';
 import './styles/Home.scss';
-import ChatPrompt from './components/Footer/ChatPrompt';
+
 // import './styles/profile.css';
 
 require('dotenv').config()
@@ -38,7 +39,6 @@ function App() {
               <Route path="/signup" exact component={SignUp}/>
               <Route path="/results" exact component={Results}/>
             </Switch>
-        <Footer />
         </div>
       </Provider>
     </Router >
