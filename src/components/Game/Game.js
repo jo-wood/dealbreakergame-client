@@ -9,10 +9,10 @@ import io from 'socket.io-client';
 require('dotenv').config({ path: '../../' })
 
 class Game extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      user_id: '',
+      user_id: 8,
       userPool: {},
       showMembers: false,
       storeUserQandA: null,
@@ -29,7 +29,7 @@ class Game extends Component {
     this.setState({
       showMembers: !showMembers
     });
-  };
+  }
 
   _handleSocketMessage(type, payload) {
 
@@ -72,47 +72,24 @@ class Game extends Component {
       this._handleSocketMessage('gameRoomTimer', timerTime);
     });
 
-    if (!this.state.timerTime > 13 ) {
-      socket.on('NextGameRoomQuestion', (questionData) => {
+    socket.on('NextGameRoomQuestion', (questionData) => {
         this._handleSocketMessage('NextGameRoomQuestion', questionData);
-      });
-    }
-
-
+    });
   }
 
-  _submitAnswer(answer) {
-    console.log(answer)
+  _submitAnswer = (answer) => {
     const { currentQuestionData, user_id } = this.state;
-    const q_id = currentQuestionData.id;
-    const sendAnswer = {};
-    const optionA = currentQuestionData['optionA'],
-          optionB = currentQuestionData['optionB'],
-          optionC = currentQuestionData['optionC'],
-          optionD = currentQuestionData['optionD'];
-    switch (answer) {
-      case optionA:
-        sendAnswer[q_id][user_id] = 'optionA' ;
-        break;
-      case optionB:
-        sendAnswer[q_id][user_id] = 'optionB';
-        break;
-      case optionC:
-        sendAnswer[q_id][user_id] = 'optionC';
-        break;
-      case optionD:
-        sendAnswer[q_id][user_id] = 'optionD';
-        break;
-      default:
-        sendAnswer[q_id] =  { user_id: undefined } ;
-        break;                          
+    let userAnswer = {
+      q_id: currentQuestionData.id,
+      user_id,
+      answer
     }
-    console.log('sendAnswer to socket:', sendAnswer)    
+    this.socket.emit('userAnswer', userAnswer);
   }
 
   render() {
     const { currentQuestionData, questionCount, timerTime, showMembers } = this.state;
-    const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} submit={this._submitAnswer} q={currentQuestionData} />)
+    const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} _submitAnswer={this._submitAnswer} q={currentQuestionData} />)
     const toggleContestents = showMembers && (<GameMembers/>);
     const gameOver = (questionCount === 10) && (<Redirect to='/results'/>);
     
