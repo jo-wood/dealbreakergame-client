@@ -3,12 +3,6 @@ import 'react-circular-progressbar/dist/styles.css';
 import React, { Component } from 'react';
 
 class GameTimer extends Component {
-  constructor() {
-    super();
-    this.state = {
-    }
-  }
-
   render() {
       const value = this.props.timeLeft;
     return (
@@ -18,5 +12,4 @@ class GameTimer extends Component {
     );
   }
 }
-
 export default GameTimer;

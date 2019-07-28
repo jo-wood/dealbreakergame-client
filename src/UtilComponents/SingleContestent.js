@@ -5,7 +5,7 @@ class SingleContestent extends Component {
     const { user } = this.props;
     return (
       <div className="singleContestent">
-          <a href="#">{user}</a>
+          <a href="/" >{user}</a>
       </div>
     );
   }
