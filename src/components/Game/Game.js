@@ -68,8 +68,6 @@ class Game extends Component {
       });
     }
 
-
-
     socket.on('gameRoomTimer', (timerTime) => {
       this._handleSocketMessage('gameRoomTimer', timerTime);
     });
@@ -83,10 +81,10 @@ class Game extends Component {
 
   }
 
-  _submitAnswer(q_id, answer) {
+  _submitAnswer(answer) {
     console.log(answer)
-
     const { currentQuestionData, user_id } = this.state;
+    const q_id = currentQuestionData.id;
     const sendAnswer = {};
     const optionA = currentQuestionData['optionA'],
           optionB = currentQuestionData['optionB'],
@@ -114,9 +112,9 @@ class Game extends Component {
 
   render() {
     const { currentQuestionData, questionCount, timerTime, showMembers } = this.state;
-    const renderQ = (currentQuestionData) && (<div><Question key={currentQuestionData.id} submit={this._submitAnswer} q={currentQuestionData} /></div>)
-    const toggleContestents = showMembers && (<div><GameMembers/></div>);
-    const gameOver = (questionCount === 10) && (<div><Redirect to='/results'/></div>);
+    const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} submit={this._submitAnswer} q={currentQuestionData} />)
+    const toggleContestents = showMembers && (<GameMembers/>);
+    const gameOver = (questionCount === 10) && (<Redirect to='/results'/>);
     
     return (
       <div>

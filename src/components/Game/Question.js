@@ -5,13 +5,15 @@ class Question extends Component {
 
   _renderOptions(question) {
     const { optionA, optionB, optionC, optionD } = question;
-    let optionId = 0;
-    const _submitAnswer = this.props.submit;
-    const options = [ optionA, optionB, optionC, optionD ]
+    const submitAnswer = this.props.submit;
+    const options = [ optionA, optionB, optionC, optionD ];
+    const ans = [ 'optionA', 'optionB', 'optionC', 'optionD' ];
+    let optionId = 0;    
     return options.map(option => {
+      let option_id = ans[optionId];
       optionId++;
       return (
-          <Option key={optionId} submit={ _submitAnswer } option={option} />
+          <Option id={option_id } submit={ submitAnswer } option={option} />
       );
     })
   }  
