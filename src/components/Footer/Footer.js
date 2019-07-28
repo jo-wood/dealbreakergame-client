@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
+import GameMembers from './GameMembers';
+import Privacy from './GameMembers';
 
-function Footer() {
+class Footer extends Component {
 
-  return (
-    <footer>
-        <p>Made with Love in Toronto, Canada.</p>
-        <a href="/privacy">Privacy</a>
-    </footer>
-  );
+  // checkCurrentRoute(checkPath) {
+  //   if (checkPath === 'game') {
+  //     return (
+  //       <button onClick={() => this.props.toggle}>Show Contestents</button>              
+  //       <GameMembers />
+  //     )
+
+  //   }
+  // }
+
+  render() {
+    // const renderFooter = this.checkCurrentRoute(this.props.route);
+    return (
+      <div>
+        <footer>
+        </footer>
+      </div>
+
+    );
+  }
+
 }
 
 export default Footer;
