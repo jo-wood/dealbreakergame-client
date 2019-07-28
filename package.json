@@ -8,6 +8,7 @@
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-circular-progressbar": "^2.0.1",
+    "react-countdown-now": "^2.1.1",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-router-dom": "^5.0.1",
