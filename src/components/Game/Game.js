@@ -61,12 +61,9 @@ class Game extends Component {
     this.socket = io('http://localhost:5001');
     const socket = this.socket;
     
-    if (this.state.questionCount === 1) {
-      socket.emit('gameStarted');
-      socket.on('initializeGame', (startData) => {
+    socket.on('initializeGame', (startData) => {
         this._handleSocketMessage('initializeGame', startData);
-      });
-    }
+    });
 
     socket.on('gameRoomTimer', (timerTime) => {
       this._handleSocketMessage('gameRoomTimer', timerTime);
