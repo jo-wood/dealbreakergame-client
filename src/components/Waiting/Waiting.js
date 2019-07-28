@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactCountdown from 'react-countdown-now'; //react count down now
 import ChatRoom from './ChatRoom';
 import {Helmet} from "react-helmet";
+import { Redirect } from 'react-router-dom'
 import io from 'socket.io-client';
 
 require('dotenv').config({ path: '../../' })
@@ -10,24 +11,33 @@ class Waiting extends Component {
   constructor() {
     super();
     this.state = {
-      nextGameTime: null
+      nextGameTime: null,
+      gameStarted: false
     }
   }
 
   async componentDidMount() {
     this.socket = io('http://localhost:5001');
-    const socket = this.socket;
-    socket.on('setNextGameTime', (nextGameTime) => {
-      this._setDateOfNextGame(nextGameTime);
-    });
+    this.socket.on('setNextGameTime', (nextGameTime) => this._handleSocketMessage('setNextGameTime', nextGameTime));
+    this.socket.on('gameStarted', (gameStarted) => this._handleSocketMessage('gameStatus', gameStarted));
   }
 
-  _setDateOfNextGame = (nextGameTime) => {
-    console.log(nextGameTime);
-    this.setState({ nextGameTime: nextGameTime });
+  _handleSocketMessage = (type, payload) => {
+    switch (type) {
+      case 'setNextGameTime':
+        this.setState({ nextGameTime: payload });
+        break;
+      case 'gameStarted':
+        this.setState({ gameStarted: true });
+        break;
+      default:
+        console.log('incoming socket message:', payload);
+        break;
+    }
   }
 
   render() {
+    const { gameStarted } = this.state;
     return (
       <div>
           <Helmet>
@@ -41,6 +51,7 @@ class Waiting extends Component {
               renderer={props => <div className="nextGameCountdown">{props.hours} : {props.minutes} : {props.seconds}</div>}
               />
             <ChatRoom />
+        {gameStarted && <Redirect to='/game' />  }
       </div>
     );
   }

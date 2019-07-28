@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Question from './Question';
 import Host from './Host';
 import GameTimer from './GameTimer';
-import GameMembers from '../Footer/GameMembers';
+import Footer from '../Footer/Footer';
 import { Redirect } from 'react-router-dom'
 import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
@@ -87,7 +87,7 @@ class Game extends Component {
   render() {
     const { currentQuestionData, questionCount, timerTime, showMembers } = this.state;
     const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} _submitAnswer={this._submitAnswer} q={currentQuestionData} />)
-    const toggleContestents = showMembers && (<GameMembers/>);
+
     const gameOver = (questionCount === 10) && (<Redirect to='/results'/>);
     
     return (
@@ -100,10 +100,11 @@ class Game extends Component {
         </Helmet>
         <Host/>
         { renderQ }
+        <button>Dealbreaker</button>        
         <GameTimer timeLeft={ timerTime }/>
-        <button>Dealbreaker</button>
-        <button onClick={this.toggle}>Show Contestents</button>        
-        {toggleContestents}
+        <Footer route={'game'}>
+  
+        </Footer>
       </div>
     );
   }

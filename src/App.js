@@ -17,6 +17,7 @@ import Results from './components/Game/Results';
 import './styles/main.scss';
 import './styles/question.css';
 import './styles/Home.scss';
+import ChatPrompt from './components/Footer/ChatPrompt';
 // import './styles/profile.css';
 
 require('dotenv').config()
@@ -32,7 +33,6 @@ function App() {
               <Route path="/login" exact component={Home} />
               <Route path="/loading" exact component={Loading}/>
               <Route path="/game" exact component={Game} />
-              <Route path="/privacy" exact component={Privacy}/>
               <Route path="/profile" exact component={Profile}/>
               <Route path="/waiting" exact component={Waiting}/>
               <Route path="/signup" exact component={SignUp}/>
