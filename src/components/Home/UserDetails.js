@@ -80,6 +80,14 @@ class UserDetails extends Component {
             const cookies = new Cookies();
             cookies.set('user_id', dataObject.id, { path: '/' });
             console.log("new cookie created");
+            
+            // Re-save local userObject with user_id
+            const currentUserString = localStorage.getItem('currentUser');
+            const currentUser = JSON.parse(currentUserString);
+            currentUser['user_id'] = dataObject.id;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            // Redirect to waiting room state-change
             this.setState({formSubmitted: true})
           }
         })
