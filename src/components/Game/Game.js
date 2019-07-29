@@ -83,11 +83,11 @@ class Game extends Component {
     this._getUserInfo();
       //! load secret triggerStart key for dev:
       this.socket.emit('triggerStart', ('true'));
-    this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
+    // this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
     this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
     this.socket.on('gameRoomTimer', (timerTime) =>  this._handleSocketMessage('gameRoomTimer', timerTime));
     this.socket.on('NextGameRoomQuestion', (questionData) => this._handleSocketMessage('NextGameRoomQuestion', questionData));
-    this.socket.on('userMatchPerQuestion', (usersAnswers) => this._handleSocketMessage('userMatchPerQuestion', usersAnswers));
+    // this.socket.on('userMatchPerQuestion', (usersAnswers) => this._handleSocketMessage('userMatchPerQuestion', usersAnswers));
     this.socket.on('gameOver', (gameOver) => this._handleSocketMessage('gameOver', gameOver));
   }
 

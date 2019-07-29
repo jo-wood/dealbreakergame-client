@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SingleResult from './SingleResult';
+import Result from './SingleResult';
 import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
 
@@ -22,7 +22,7 @@ class Host extends Component {
             <title>Results</title>
             <meta name="description" content="Today's Game results for signed in users. See who you have matched with" />
           </Helmet>
-          <SingleResult/>
+          <Result />
       </div>
     );
   }

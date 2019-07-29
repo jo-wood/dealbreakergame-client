@@ -10,7 +10,7 @@ class GameMembers extends Component {
       const percent =  user.match;
       const profile =  user.img;
         return (
-          <div>
+          <div className="frame-round">
               <SingleContestent match={percent} key={user} img={profile} />
           </div>
         )

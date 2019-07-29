@@ -6,25 +6,25 @@ class SingleContestent extends Component {
     switch (match) {
       case 100: 
         return (
-            <div className="profile-userpool">
+            <div className="crop noblur">
               <img src={img} key={key} alt="user_img" />
             </div> 
         )     
       case 50:
         return (
-            <div className="profile-userpool halfblur">
+            <div className="crop halfblur">
               <img src={img} key={key} alt="user_img" />
             </div> 
         )  
       case 33:
         return (
-            <div className="profile-userpool thirdblur">
+            <div className="crop thirdblur">
               <img src={img} key={key} alt="user_img" />
             </div> 
         )          
       default:
         return (
-            <div className="profile-userpool fullblur">
+            <div className="crop fullblur">
               <img src={img} key={key} alt="user_img" />
             </div> 
         )          

@@ -1,3 +1,5 @@
+/* containers */
+
 .togglePool {
   background-color: #c45c64;
   color: white;
@@ -20,41 +22,83 @@
   align-content: center;
 }
 
-.profile-userpool img {
-  float: left;
+/*  circle backdrop */
+
+.frame-round {
+  width: 5em;
   height: 5em;
-  width: 4em;
-  border-radius: 50%/35%;
-  border: 2px solid white;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
   margin: 1%;
+  float: left;
 }
 
-.fullblur img {
-  float: left;
+.crop img,
+.fullblur img,
+.halfblur img,
+.thirdblur img,
+.noblur img {
+  display: block;
+  max-height: 100%;
+  margin: auto;
+  position: absolute;
+  top: -100%;
+  right: -100%;
+  bottom: -100%;
+  left: -100%;
+  float:left;
+  
+}
+
+
+/*  blur settings */
+
+.fullblur img,
+.halfblur img,
+.thirdblur img,
+.noblur img {
   filter: blur(10px);
-  height: 5em;
-  width: 4em;
-  border-radius: 50%/35%;
-  border: 2px solid white;
-  margin: 1%;
 }
 
-.halfblur {
-  float: left;
+.halfblur img {
   filter: blur(5px);
-  height: 5em;
-  width: 4em;
-  border-radius: 50%/35%;
-  border: 2px solid white;
-  margin: 1%;
 }
 
 .thirdblur img {
-  float: left;
   filter: blur(1px);
-  height: 5em;
-  width: 4em;
-  border-radius: 50%/35%;
-  border: 2px solid white;
-  margin: 1%;
+}
+
+.noblur img {
+  filter: blur(0px);
+}
+
+
+/*  results */
+
+.match-details h3,
+.match-details p,
+.match-details a {
+  font-size: 1em;
+  margin: 0;
+}
+
+.results-cropper {
+  width: 10em;
+  height: 10em;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 1% auto;
+}
+
+.results-profile {
+  display: block;
+  max-height: 100%;
+  margin: auto;
+  position: absolute;
+  top: -100%;
+  right: -100%;
+  bottom: -100%;
+  left: -100%;
 }
