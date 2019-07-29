@@ -13,7 +13,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: 2,
+      user_id: 11,
       userPool: {},
       showMembers: false,
       currentQuestionData: null,
@@ -49,18 +49,42 @@ class Game extends Component {
         }
         break;
       case 'userPool':
-        console.log('PAYLOAD: ', payload)
+        console.log('USER-POOL: ', payload)
         this.setState({ userPool: payload });
         break;
-      case 'userMatchPerQuestion':
+
+      case 'perQMatches':
+        console.log('MATCH-AVG-PAYLOAD', payload);
         let users = Object.keys(userPool);
         //remove dummy and use payload instead when not in dev
-          let matchDetails = payload[user_id];
-          for ( let user of users) {
-            userPool[user] = {
-              match: matchDetails[user]
+        
+        let matchDetails = payload[user_id];
+        console.log(matchDetails);
+        const updatePool = new Promise( (resolve, reject) => {
+          const newUserPool = {
+          test: true
+          };
+          
+          for (let matchUser in matchDetails) {
+            if (userPool.hasOwnProperty(matchUser)) {
+              newUserPool[matchUser] = {
+                img: this.state.userPool[matchUser].img,
+                match: matchDetails[matchUser]
+              }
             }
           }
+          resolve(newUserPool);
+        });
+
+        updatePool.then( (newPool) => {
+          console.log('User-Pool: ', userPool);
+          console.log('newUserPool: ', newPool);
+          this.setState({userPool: newPool}, () => {
+            console.log('AFTER-STATE: ', newPool);
+          });
+        });
+
+
 
         break;
       case 'gameOver':
@@ -89,7 +113,7 @@ class Game extends Component {
     socket.emit('newUser', userInfo);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.socket = io('http://localhost:5001');
     this._getUserInfo();
       //! load secret triggerStart key for dev:
@@ -99,8 +123,8 @@ class Game extends Component {
     this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
     this.socket.on('gameRoomTimer', (timerTime) =>  this._handleSocketMessage('gameRoomTimer', timerTime));
     this.socket.on('NextGameRoomQuestion', (questionData) => this._handleSocketMessage('NextGameRoomQuestion', questionData));
-    // this.socket.on('userMatchPerQuestion', (usersAnswers) => this._handleSocketMessage('userMatchPerQuestion', usersAnswers));
     this.socket.on('gameOver', (gameOver) => this._handleSocketMessage('gameOver', gameOver));
+    this.socket.on('perQMatches', (usersAnswers) => this._handleSocketMessage('perQMatches', usersAnswers));
   }
 
   _submitAnswer = (answer) => {
@@ -130,8 +154,7 @@ class Game extends Component {
         { renderQ }
         <button>Dealbreaker</button>        
         <GameTimer timeLeft={ timerTime }/>
-        <button onClick={this.toggle}>Show Contestents</button>  
-        {console.log(userPool)}                
+        <button onClick={this.toggle}>Show Contestents</button>                
         <Footer route={'game'} toggle={showMembers} userPool={userPool} />
       </div>
     );
