@@ -20,7 +20,7 @@ class Host extends Component {
     const { rankedMatches, grabMatchesInfo } = this.state;
     if (!rankedMatches) {
       return (
-        <div>
+        <div className="loader">
           <h2>Calculating your top matches!....</h2>
         </div>
       )
@@ -51,7 +51,10 @@ class Host extends Component {
     this.socket = io('http://localhost:5001');
     this.socket.on('userMatches', (userMatches) => {
       const thisUser = userMatches[user_id];
-      this.setState({ rankedMatches: thisUser})
+      this.setState({ 
+        rankedMatches: thisUser,
+        grabMatchesInfo: userMatches['some_key_that_gives_me_dummy_user_info']
+      })
     });
   }
 
