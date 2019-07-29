@@ -18,6 +18,7 @@ import Results from './components/Game/Results';
 import './styles/main.scss';
 import './styles/question.css';
 import './styles/Home.scss';
+import './styles/user_img_icon.css';
 
 // import './styles/profile.css';
 

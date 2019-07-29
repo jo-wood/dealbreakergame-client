@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-// import GameMembers from './GameMembers';
+import GameMembers from './GameMembers';
 // import Privacy from './GameMembers';
 
 class Footer extends Component {
 
-  // checkCurrentRoute(checkPath) {
-  //   if (checkPath === 'game') {
-  //     return (
-  //       <button onClick={() => this.props.toggle}>Show Contestents</button>              
-  //       <GameMembers />
-  //     )
+  renderUserPool({ toggle, userPool }) {
+    if (toggle) {
+      return (
+        <div className="userPool">
+          <GameMembers userPool={userPool} />
+        </div>
+      )
+    }
 
-  //   }
-  // }
+  }
 
   render() {
-    // const renderFooter = this.checkCurrentRoute(this.props.route);
+    const renderFooter = this.renderUserPool(this.props);
+    const toggleFooter = (this.props.toggle) ? 
+      (<div><footer className="togglePool">{ renderFooter }</footer></div>) :
+        (<div><footer>{ renderFooter }</footer></div>)
+
     return (
       <div>
-        <footer>
-        </footer>
+        {toggleFooter}
       </div>
 
     );

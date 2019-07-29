@@ -6,16 +6,16 @@ import Footer from '../Footer/Footer';
 import { Redirect } from 'react-router-dom'
 import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
+import  dummyUserPool  from './io_dummy_userPool'
 require('dotenv').config({ path: '../../' })
 
 class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: 8,
-      userPool: {},
+      user_id: 2,
+      userPool: dummyUserPool,
       showMembers: false,
-      storeUsersQandA: null,
       currentQuestionData: null,
       questionCount: 1,
       timerTime: undefined,
@@ -31,7 +31,7 @@ class Game extends Component {
   }
 
   _handleSocketMessage(type, payload) {
-    const { questionCount, user_id } = this.state;
+    const { questionCount, user_id, userPool} = this.state;
     switch (type) {
       case 'initializeGame':
       case 'NextGameRoomQuestion':
@@ -47,10 +47,15 @@ class Game extends Component {
         this.setState({ userPool: payload });
         break;
       case 'userMatchPerQuestion':
-        for (let user in payload) {
-          if (user === user_id) {
-            this.setState({  storeUsersQandA: payload[user_id] });
-          }}
+        let users = Object.keys(userPool);
+        //remove dummy and use payload instead when not in dev
+          let matchDetails = payload[user_id];
+          for ( let user of users) {
+            userPool[user] = {
+              match: matchDetails[user]
+            }
+          }
+
         break;
       case 'gameOver':
         this.setState({  gameOver: true });
@@ -67,7 +72,7 @@ class Game extends Component {
     const currentUser = JSON.parse(currentUserString);
     // just send id and pic so that sockets can broadcast this data back on all current users for GameMembers Component
     // use dummy user_id since Jo not signed in yet and user_id is null
-    const user_id = currentUser.user_id || 8 ;
+    const user_id = currentUser.user_id || 2 ;
     userInfo[user_id] = currentUser.profile_picture;
     this.setState({ user_id })
     this.socket.emit('newUser', (userInfo));
@@ -76,11 +81,13 @@ class Game extends Component {
   componentDidMount() {
     this.socket = io('http://localhost:5001');
     this._getUserInfo();
-    this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
+      //! load secret triggerStart key for dev:
+      this.socket.emit('triggerStart', ('true'));
+    // this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
     this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
     this.socket.on('gameRoomTimer', (timerTime) =>  this._handleSocketMessage('gameRoomTimer', timerTime));
     this.socket.on('NextGameRoomQuestion', (questionData) => this._handleSocketMessage('NextGameRoomQuestion', questionData));
-    this.socket.on('userMatchPerQuestion', (usersAnswers) => this._handleSocketMessage('userMatchPerQuestion', usersAnswers));
+    // this.socket.on('userMatchPerQuestion', (usersAnswers) => this._handleSocketMessage('userMatchPerQuestion', usersAnswers));
     this.socket.on('gameOver', (gameOver) => this._handleSocketMessage('gameOver', gameOver));
   }
 
@@ -95,7 +102,7 @@ class Game extends Component {
   }
 
   render() {
-    const { currentQuestionData, timerTime, userPool, gameOver, user_id } = this.state;
+    const { currentQuestionData, timerTime, userPool, gameOver, user_id, showMembers } = this.state;
     const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} _submitAnswer={this._submitAnswer} q={currentQuestionData} />)
     const sendResults = (gameOver) && ( < Redirect to= '/results' currentUser={ user_id } /> );
     
@@ -111,7 +118,8 @@ class Game extends Component {
         { renderQ }
         <button>Dealbreaker</button>        
         <GameTimer timeLeft={ timerTime }/>
-        <Footer route={'game'} userPool={userPool} />
+        <button onClick={this.toggle}>Show Contestents</button>                  
+        <Footer route={'game'} toggle={showMembers} userPool={userPool} />
       </div>
     );
   }
