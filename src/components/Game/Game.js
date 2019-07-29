@@ -82,7 +82,7 @@ class Game extends Component {
     this.socket = io('http://localhost:5001');
     this._getUserInfo();
       //! load secret triggerStart key for dev:
-      this.socket.emit('triggerStart', ('true'));
+      //this.socket.emit('triggerStart', ('true'));
     // this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
     this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
     this.socket.on('gameRoomTimer', (timerTime) =>  this._handleSocketMessage('gameRoomTimer', timerTime));
