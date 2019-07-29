@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Redirect } from 'react-router-dom'
 
 /* Import Components */
 import Select from '../../UtilComponents/Select';
@@ -30,6 +31,7 @@ class UserDetails extends Component {
 
       },
       detailsUncompleted: true,
+      formSubmitted: false,
       entriesSubmitted: new Set(),
       identifyAs: ['Male', 'Female', 'Prefer not to say'],
       interestOptions: ['Females', 'Males', 'No Perference'],
@@ -78,6 +80,15 @@ class UserDetails extends Component {
             const cookies = new Cookies();
             cookies.set('user_id', dataObject.id, { path: '/' });
             console.log("new cookie created");
+            
+            // Re-save local userObject with user_id
+            const currentUserString = localStorage.getItem('currentUser');
+            const currentUser = JSON.parse(currentUserString);
+            currentUser['user_id'] = dataObject.id;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            // Redirect to waiting room state-change
+            this.setState({formSubmitted: true})
           }
         })
     })
@@ -106,6 +117,7 @@ class UserDetails extends Component {
 
     return (
       <form className="container" onSubmit={this.handleFormSubmit}>
+        {this.state.formSubmitted ? <Redirect to='/waiting' /> : null}
         
         <label htmlFor={'birthdate'} className="form-label">Birthdate</label>
 
