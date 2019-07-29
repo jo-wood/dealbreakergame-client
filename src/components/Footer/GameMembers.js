@@ -4,8 +4,8 @@ require('dotenv').config({ path: '../../' })
 
 class GameMembers extends Component {
 
-  renderMemberInformation({ dummyUserPool }) {
-    const users = Object.values(dummyUserPool)
+  renderMemberInformation(userPool) {
+    const users = Object.values(userPool)
     return users.map(user => {
       const percent =  user.match;
       const profile =  user.img;
