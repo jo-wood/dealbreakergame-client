@@ -13,7 +13,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: 11,
+      user_id: null,
       userPool: {},
       showMembers: false,
       currentQuestionData: null,
