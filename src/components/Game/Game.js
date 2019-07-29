@@ -14,7 +14,7 @@ class Game extends Component {
     super(props);
     this.state = {
       user_id: 2,
-      userPool: dummyUserPool,
+      userPool: {},
       showMembers: false,
       currentQuestionData: null,
       questionCount: 1,
@@ -43,7 +43,13 @@ class Game extends Component {
       case 'gameRoomTimer':
         this.setState({ timerTime: payload });
         break;
+      case 'sendUserInfo':
+        if (payload === "true") {
+          
+        }
+        break;
       case 'userPool':
+        console.log('PAYLOAD: ', payload)
         this.setState({ userPool: payload });
         break;
       case 'userMatchPerQuestion':
@@ -66,24 +72,30 @@ class Game extends Component {
     }
   }
 
-  _getUserInfo() {
+  _getUserInfo = () => {
     let userInfo = {};
     const currentUserString = localStorage.getItem('currentUser');
     const currentUser = JSON.parse(currentUserString);
     // just send id and pic so that sockets can broadcast this data back on all current users for GameMembers Component
     // use dummy user_id since Jo not signed in yet and user_id is null
     const user_id = currentUser.user_id || 2 ;
-    userInfo[user_id] = currentUser.profile_picture;
+    //userInfo[user_id] = currentUser.profile_picture;
+    userInfo = {
+      user_id: user_id,
+      profile_picture: currentUser.profile_picture
+    }
     this.setState({ user_id })
-    this.socket.emit('newUser', (userInfo));
+    const socket = this.socket;
+    socket.emit('newUser', userInfo);
   }
 
   componentDidMount() {
     this.socket = io('http://localhost:5001');
     this._getUserInfo();
       //! load secret triggerStart key for dev:
-      this.socket.emit('triggerStart', ('true'));
-    // this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
+      //this.socket.emit('triggerStart', ('true'));
+    this.socket.on('sendUserInfo', (userCall) => this._handleSocketMessage('sendUserInfo', userCall));  
+    this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
     this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
     this.socket.on('gameRoomTimer', (timerTime) =>  this._handleSocketMessage('gameRoomTimer', timerTime));
     this.socket.on('NextGameRoomQuestion', (questionData) => this._handleSocketMessage('NextGameRoomQuestion', questionData));
@@ -118,7 +130,8 @@ class Game extends Component {
         { renderQ }
         <button>Dealbreaker</button>        
         <GameTimer timeLeft={ timerTime }/>
-        <button onClick={this.toggle}>Show Contestents</button>                  
+        <button onClick={this.toggle}>Show Contestents</button>  
+        {console.log(userPool)}                
         <Footer route={'game'} toggle={showMembers} userPool={userPool} />
       </div>
     );
