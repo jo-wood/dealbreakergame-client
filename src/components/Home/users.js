@@ -15,7 +15,7 @@ class UserContainer extends Container {
   fetchUser = (url, data) => {
     fetch(url, {
       method: 'POST',
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": '*' },
       mode: 'cors',
       body: JSON.stringify(data),
     })
