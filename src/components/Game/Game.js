@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import { Redirect } from 'react-router-dom'
 import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
-import  dummyUserPool  from './io_dummy_userPool'
+import  dummyUserPool  from './socketMessages/io_dummy_userPool'
 require('dotenv').config({ path: '../../' })
 
 class Game extends Component {
