@@ -1,0 +1,60 @@
+.togglePool {
+  background-color: #c45c64;
+  color: white;
+  bottom: 0;
+  width: 100%;
+  height: 50vh;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.userPool {
+  width: 96%;
+  padding: 2%;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  min-height: 25vh;
+  align-content: center;
+}
+
+.profile-userpool img {
+  float: left;
+  height: 5em;
+  width: 4em;
+  border-radius: 50%/35%;
+  border: 2px solid white;
+  margin: 1%;
+}
+
+.fullblur img {
+  float: left;
+  filter: blur(10px);
+  height: 5em;
+  width: 4em;
+  border-radius: 50%/35%;
+  border: 2px solid white;
+  margin: 1%;
+}
+
+.halfblur {
+  float: left;
+  filter: blur(5px);
+  height: 5em;
+  width: 4em;
+  border-radius: 50%/35%;
+  border: 2px solid white;
+  margin: 1%;
+}
+
+.thirdblur img {
+  float: left;
+  filter: blur(1px);
+  height: 5em;
+  width: 4em;
+  border-radius: 50%/35%;
+  border: 2px solid white;
+  margin: 1%;
+}

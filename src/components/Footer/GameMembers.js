@@ -3,26 +3,22 @@ import SingleContestent from '../../UtilComponents/SingleContestent'
 require('dotenv').config({ path: '../../' })
 
 class GameMembers extends Component {
-  constructor() {
-    super();
-    this.state = {
-      users_online: ["jake", "alex", "don", "lisa", "emily", "ashley"],
-    }
-  }
 
-  renderMemberInformation(users_online) {
-    return users_online.map(user => {
-      return (
-        <div>
-          <SingleContestent key={user.id} user={user} />
-        </div>
-      )
-    });
+  renderMemberInformation({ dummyUserPool }) {
+    const users = Object.values(dummyUserPool)
+    return users.map(user => {
+      const percent =  user.match;
+      const profile =  user.img;
+        return (
+          <div>
+              <SingleContestent match={percent} key={user} img={profile} />
+          </div>
+        )
+    })
   }
 
   render() {
-    const { users_online } = this.state;
-    const members = users_online ? (this.renderMemberInformation(users_online)) : (<h3>Loading Members Online ...</h3>)
+    const members = this.renderMemberInformation(this.props.userPool)
     return (
       <div>
         {members}
