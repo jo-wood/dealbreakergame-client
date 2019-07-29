@@ -14,6 +14,7 @@ import Loading from './components/Home/Loading';
 import Waiting from './components/Waiting/Waiting';
 import SignUp from './components/Home/SignUp';
 import Results from './components/Game/Results';
+import Logout from './components/Profile/Logout';
 // styles
 import './styles/main.scss';
 import './styles/question.css';
@@ -39,6 +40,7 @@ function App() {
               <Route path="/waiting" exact component={Waiting}/>
               <Route path="/signup" exact component={SignUp}/>
               <Route path="/results" exact component={Results}/>
+              <Route path="/logout" exact component={Logout}/>
             </Switch>
         </div>
       </Provider>
