@@ -19,6 +19,7 @@ import Logout from './components/Profile/Logout';
 import './styles/main.scss';
 import './styles/question.css';
 import './styles/App.scss';
+import './styles/loader.css';
 import './styles/user_img_icon.css';
 
 // import './styles/profile.css';
