@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ChatPrompt from '../Footer/ChatPrompt';
 import io from 'socket.io-client';
+import Logo from '../../images/favicon.png'
 require('dotenv').config({ path: '../../' })
 
 class ChatRoom extends Component {
@@ -51,12 +52,15 @@ class ChatRoom extends Component {
     const { chatlog } = this.state;
     const chat = chatlog ? (this.renderChat(chatlog)) : (<h3>Loading Chat ...</h3>)
     return (
-      <div>
+      <div className="chatroom">
+        <img src={Logo} alt='logo' />
+        <div className="chat">
         { chat }
-        <form onSubmit={this._handleOnSubmit}>
-          <input type="text" name="chatInput" placeholder="Ready to play?"></input>
-          <button type="submit">Send</button>
-        </form>
+        </div>
+          <form onSubmit={this._handleOnSubmit}>
+            <input type="text" name="chatInput" placeholder="  Ready to play?! "></input>
+            <button type="submit"><i class="fa fa-comment"></i></button>
+          </form>
       </div>
     );
   }

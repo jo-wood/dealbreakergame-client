@@ -15,12 +15,14 @@ import Waiting from './components/Waiting/Waiting';
 import SignUp from './components/Home/SignUp';
 import Results from './components/Game/Results';
 import Logout from './components/Profile/Logout';
-// styles
-import './styles/main.scss';
-import './styles/question.css';
+// Page Styles
 import './styles/App.scss';
+import './styles/Waiting.css';
+// Util Styles
+import './styles/question.css';
 import './styles/loader.css';
 import './styles/user_img_icon.css';
+import './styles/nav_img.css';
 
 // import './styles/profile.css';
 

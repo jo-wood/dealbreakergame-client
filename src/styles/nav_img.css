@@ -1,0 +1,18 @@
+
+/*  circle backdrop */
+
+.circle {
+  width: 10vh;
+  height: 10vh;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.circle img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+  
+}
