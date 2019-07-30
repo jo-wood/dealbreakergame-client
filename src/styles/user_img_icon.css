@@ -51,32 +51,3 @@
   filter: blur(0px);
 }
 
-
-/*  results */
-
-.match-details h3,
-.match-details p,
-.match-details a {
-  font-size: 1em;
-  margin: 0;
-}
-
-.results-cropper {
-  width: 10em;
-  height: 10em;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-  margin: 1% auto;
-}
-
-.results-profile {
-  display: block;
-  max-height: 100%;
-  margin: auto;
-  position: absolute;
-  top: -100%;
-  right: -100%;
-  bottom: -100%;
-  left: -100%;
-}

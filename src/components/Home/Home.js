@@ -28,9 +28,9 @@ function Home() {
           <a href={oauth_url}>
             <span className="bold">SIGN IN <br/></span> WITH  <br/>
           </a>          
-        <div className="instagram">  
-          <span className="fa fa-instagram"></span>       
-        </div>
+          <div className="instagram">  
+            <span className="fa fa-instagram"></span>       
+          </div>
         </div>
       </div>
     </div>

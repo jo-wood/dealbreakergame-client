@@ -10,8 +10,14 @@ class Result extends Component {
           </div>
             <div className="match-details">
               <h3>{name}</h3>
-              <p>{matchPercent}% Match</p>
-              <a href={insta} target='_blank' rel="noopener noreferrer">Follow</a>
+              <p><span>{matchPercent}%</span> Match</p>
+              <div className="follow-box">        
+                <a href={insta} target='_blank' rel="noopener noreferrer">Follow:</a> 
+                  <div className="instagram">  
+                    <span className="fa fa-instagram follow"></span>       
+                  </div>
+              </div>
+
             </div> 
       </div>
     );

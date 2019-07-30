@@ -20,8 +20,9 @@ class Host extends Component {
     const { rankedMatches, grabMatchesInfo } = this.state;
     if (!rankedMatches) {
       return (
-        <div className="loader">
-          <h2>Calculating your top matches!....</h2>
+        <div className="Main">
+          <div class="lds-heart" ><div></div></div> 
+          <h2> Calculating your top matches!.... </h2>
         </div>
       )
     } else {
@@ -35,7 +36,7 @@ class Host extends Component {
         const image = matchInfo.image_url;
 
         return (
-          <div>
+          <div className="oneResult">
             <Result key={match_user_id} matchData={{ image, name, insta, matchPercent }}/>
           </div>
         )
@@ -67,7 +68,9 @@ class Host extends Component {
             <title>Results</title>
             <meta name="description" content="Today's Game results for signed in users. See who you have matched with" />
           </Helmet>
-      {results}
+      <div className="Main">
+        {results}
+      </div>
       </div>
     );
   }

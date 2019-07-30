@@ -26,6 +26,7 @@ import './styles/question.css';
 import './styles/loader.css';
 import './styles/user_img_icon.css';
 import './styles/nav_img.css';
+import './styles/Results.css';
 
 // import './styles/profile.css';
 
