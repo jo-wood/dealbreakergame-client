@@ -6,7 +6,7 @@ class GameTimer extends Component {
   render() {
       const value = this.props.timeLeft;
     return (
-      <div>
+      <div className="timer">
           <CircularProgressbar value={value} maxValue={15} text={value} height={"15px"} />
       </div>
     );

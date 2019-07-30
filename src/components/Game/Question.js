@@ -18,7 +18,7 @@ class Question extends Component {
       let option_id = ans[optionId];
       optionId++;
       return (
-        <button onClick={this.selectedAnswer }>
+        <button className="optionButton" onClick={this.selectedAnswer }>
           <Option id={option_id } option={option} />
         </button>
 
@@ -27,7 +27,7 @@ class Question extends Component {
   }  
   render() {
     const { q } = this.props;
-    const showOptions = (<div>{this._renderOptions(q)}</div>)
+    const showOptions = (<div className="optionBlock">{this._renderOptions(q)}</div>)
     return (
       <div className="hiddenCB">
         <div>

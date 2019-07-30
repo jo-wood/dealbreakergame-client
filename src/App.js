@@ -16,7 +16,9 @@ import SignUp from './components/Home/SignUp';
 import Results from './components/Game/Results';
 import Logout from './components/Profile/Logout';
 // Page Styles
+//! DO NOT ADJUST STYLE IMPORTS
 import './styles/App.scss';
+
 import './styles/Game.scss';
 import './styles/Waiting.css';
 // Util Styles

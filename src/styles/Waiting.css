@@ -36,15 +36,19 @@
   position: fixed;
   bottom: 11vh;
   left: 5%;
-  background-color: black;
+  /* background-color: black; */
   color: white;
-  opacity: 0.3;
+  /* opacity: 0.3; */
   width: 90%;
   margin: auto;
   font-weight: bold;
   border-radius: 5%;
   padding-top: -10%;
   font-size: 1.2em;
+  height: 35%;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.45));
 }
 
 .chatroom {
@@ -53,7 +57,7 @@
 }
 
 .chatroom img {
-  margin-top: 5%;
+  margin-top: 10%;
   opacity: 0.1;
 }
 
@@ -91,7 +95,7 @@ footer {
   background-color: rgb(197, 37, 50);
   color: white;
   bottom: 0;
-  position: fixed;
+  position: absolute;
   height: 10vh;
   width: 100%;
   border-top-left-radius: 25px;

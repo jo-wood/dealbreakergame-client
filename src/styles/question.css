@@ -5,6 +5,15 @@ label {
   transition: all .6s;
 }
 
+.hiddenCB h1 {
+  text-transform: none;
+  color: rgb(48, 47, 47);
+  margin: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 2vh;
+}
+
 .hiddenCB div {
   display: inline;
   margin: 0;
@@ -24,13 +33,41 @@ label {
 }
 
 .hiddenCB input[type="checkbox"]+label:hover{
-  background: rgba(223, 95, 148, 0.8);
+  background: rgba(245, 169, 119, 0.8);
 }
 
 .hiddenCB input[type="checkbox"]:checked+label {
-  background: rgba(223, 95, 148, 0.4);
+  background: rgba(245, 169, 119, 0.4);
 }
 
 .hiddenCB input[type="checkbox"]:checked+label:hover{
-  background: rgba(0, 128, 128, 0, .7);
+  background: rgba(245, 169, 119, .7);
 }
+
+
+
+.CircularProgressbar {
+  width: 6em;
+  height: 6em;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: rgba(104, 199, 16, 0.8);
+}
+
+
+.optionButton {
+  clear: both;
+  display: block;
+  float: left;
+  margin-left: 5vh;
+  background-color: white;
+  border-radius: 4%;
+  border: 1px solid;
+  box-shadow: 5% 10% coral;
+  border: 1px solid coral;
+  color: rgb(197, 37, 50);
+  font-size: 1em;
+  font-weight: bold;
+  box-shadow: 5px 5px #fdad4980;
+  }
