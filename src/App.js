@@ -17,6 +17,7 @@ import Results from './components/Game/Results';
 import Logout from './components/Profile/Logout';
 // Page Styles
 import './styles/App.scss';
+import './styles/Game.scss';
 import './styles/Waiting.css';
 // Util Styles
 import './styles/question.css';

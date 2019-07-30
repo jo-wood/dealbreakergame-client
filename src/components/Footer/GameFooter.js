@@ -18,8 +18,8 @@ class GameFooter extends Component {
   render() {
     const renderFooter = this.renderUserPool(this.props);
     const toggleFooter = (this.props.toggle) ? 
-      (<div><footer className="togglePool">{ renderFooter }</footer></div>) :
-        (<div><footer>{ renderFooter }</footer></div>)
+      (<div className="togglePool">{ renderFooter }</div>) :
+        (<div className="gameFooter">{ renderFooter }</div>)
 
     return (
       <div>

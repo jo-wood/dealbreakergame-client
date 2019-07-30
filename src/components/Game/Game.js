@@ -17,6 +17,7 @@ class Game extends Component {
       userPool: {},
       showMembers: false,
       currentQuestionData: null,
+      gif_url: 'https://media.giphy.com/media/xUA7baCMQfFkvG5BdK/giphy.gif',
       questionCount: 1,
       timerTime: undefined,
       gameOver: false
@@ -25,9 +26,16 @@ class Game extends Component {
 
   toggle = () => {
     const {showMembers} = this.state;
-    this.setState({
-      showMembers: !showMembers
-    });
+    if (showMembers) {
+      this.setState({
+        showMembers: false
+      });
+    } else {
+      this.setState({
+        showMembers: true
+      });
+    }
+
   }
 
   _handleSocketMessage(type, payload) {
@@ -153,12 +161,14 @@ class Game extends Component {
             <title>Live Game</title>
             <meta name="description" content="Dealbreaker Game is live and matches are being made" />
         </Helmet>
-        <Host/>
-        { renderQ }
-        <button>Dealbreaker</button>        
-        <GameTimer timeLeft={ timerTime }/>
-        <button onClick={this.toggle}>Show Contestents</button>                
-        <GameFooter route={'game'} toggle={showMembers} userPool={userPool} />
+        <div className="Main">
+          <Host gif={this.state.gif_url}/>
+          { renderQ }
+  
+          <GameTimer timeLeft={ timerTime }/>
+          <button className="hideInFooter" onClick={this.toggle}><i class="fa fa-chevron-up"></i></button>                
+          <GameFooter route={'game'} toggle={showMembers} userPool={userPool} />
+        </div>
       </div>
     );
   }

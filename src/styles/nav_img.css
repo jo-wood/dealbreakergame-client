@@ -1,9 +1,14 @@
 
 /*  circle backdrop */
 
+ul.nav-links {
+  margin-right: 0;
+  margin-left: 5vh;
+}
+
 .circle {
-  width: 10vh;
-  height: 10vh;
+  width: 5vh;
+  height: 5vh;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
