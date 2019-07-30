@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Question from './Question';
 import Host from './Host';
 import GameTimer from './GameTimer';
-import Footer from '../Footer/Footer';
+import GameFooter from '../Footer/GameFooter';
 import { Redirect } from 'react-router-dom'
 import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
@@ -106,7 +106,10 @@ class Game extends Component {
     //userInfo[user_id] = currentUser.profile_picture;
     userInfo = {
       user_id: user_id,
-      profile_picture: currentUser.profile_picture
+      profile_picture: currentUser.profile_picture,
+      full_name: currentUser.full_name,
+      instagram_id: currentUser.instagram_id,
+      username: currentUser.username
     }
     this.setState({ user_id })
     const socket = this.socket;
@@ -155,7 +158,7 @@ class Game extends Component {
         <button>Dealbreaker</button>        
         <GameTimer timeLeft={ timerTime }/>
         <button onClick={this.toggle}>Show Contestents</button>                
-        <Footer route={'game'} toggle={showMembers} userPool={userPool} />
+        <GameFooter route={'game'} toggle={showMembers} userPool={userPool} />
       </div>
     );
   }

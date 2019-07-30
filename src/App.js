@@ -7,7 +7,7 @@ import Nav from './components/Nav/Nav';
 import Home from './components/Home/Home';
 import Game from './components/Game/Game';
 // import Privacy from './components/Footer/Privacy';
-// import Footer from './components/Footer/Footer';
+import Footer from './components/Footer/Footer';
 // import ChatPrompt from './components/Footer/ChatPrompt';
 import Profile from './components/Profile/Profile';
 import Loading from './components/Home/Loading';
@@ -18,7 +18,7 @@ import Logout from './components/Profile/Logout';
 // styles
 import './styles/main.scss';
 import './styles/question.css';
-import './styles/Home.scss';
+import './styles/App.scss';
 import './styles/user_img_icon.css';
 
 // import './styles/profile.css';
@@ -42,6 +42,7 @@ function App() {
               <Route path="/results" exact component={Results}/>
               <Route path="/logout" exact component={Logout}/>
             </Switch>
+          <Footer />
         </div>
       </Provider>
     </Router >
