@@ -14,7 +14,7 @@ class ChatRoom extends Component {
   
   async componentDidMount() {
     await this.setState({ chatlog: [ "when does the game start?","Has anyone ever played?", "hello", "I can't wait to find love", "what is this ?"]})
-    this.socket = io('http://localhost:5001');
+    this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:5001');
     const socket = this.socket;
     socket.on('message', (messageData) => {
       this._handleOnNewMessage(messageData);

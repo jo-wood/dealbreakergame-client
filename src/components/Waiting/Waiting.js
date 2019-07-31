@@ -17,7 +17,7 @@ class Waiting extends Component {
   }
 
   async componentDidMount() {
-    this.socket = io('http://localhost:5001');
+    this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:5001');
     this.socket.on('setNextGameTime', (nextGameTime) => this._handleSocketMessage('setNextGameTime', nextGameTime));
     this.socket.on('gameStarted', (gameStarted) => this._handleSocketMessage('gameStarted', gameStarted));
   }
