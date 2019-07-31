@@ -35,7 +35,7 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 10vh;
+  height: 10vh;
   width: 100%;
   color: white;
 }
@@ -132,6 +132,7 @@ footer {
   height: 10vh;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
+
 }
 
 footer  a  {
@@ -144,4 +145,5 @@ footer  a  {
   font-size: 1.2em;
   padding-top: 2%;
   padding-bottom: 5%;
+  z-index: 0;
 }

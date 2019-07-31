@@ -44,7 +44,7 @@ class Nav extends React.Component {
   render() {
     const navLink = this.renderNav();
     return (
-      <nav>
+      <nav className="gameNav">
         <a href="/" className="logo">
           <h1>Deal<strong>Breaker</strong></h1>
         </a>
