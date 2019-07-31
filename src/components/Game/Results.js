@@ -2,65 +2,66 @@ import React, { Component } from 'react';
 import Result from './SingleResult';
 import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
-import dummyRankedMatches from './socketMessages/finalRankMatches'
-import dummyUserInfo from './socketMessages/usersProfiles';
+// import dummyRankedMatches from './socketMessages/finalRankMatches'
+// import dummyUserInfo from './socketMessages/usersProfiles';
 
 class Host extends Component {
   constructor() {
     super();
     this.state= {
-      // set initial to empty object
-      rankedMatches: dummyRankedMatches[2],
-      // set initial to empty array
-      grabMatchesInfo: dummyUserInfo
+      user_id: null,
+      rankedMatches: null,
+      grabMatchesInfo: null
     }
   }
 
-  _handleMatchResults() {
+  _handleMatchResults({ rankedMatches, grabMatchesInfo } ) {
+      const thisUser = rankedMatches;
+      const firstMatch = thisUser[0];
+      const secondMatch = thisUser[1];
+      const thirdMatch = thisUser[2];      
+      this.setState({ 
+        rankedMatches: [firstMatch, secondMatch, thirdMatch],
+        grabMatchesInfo: grabMatchesInfo
+      })
+  } 
+  matchResults() {
     const { rankedMatches, grabMatchesInfo } = this.state;
     if (!rankedMatches) {
       return (
         <div className="Main">
-          <div class="lds-heart" ><div></div></div> 
+          <div class="lds-heart"><div></div></div> 
           <h2> Calculating your top matches!.... </h2>
         </div>
       )
     } else {
-      const matches = Object.entries(rankedMatches)
-      return matches.map(match => {
-        const match_user_id = match[0];
-        const matchPercent = match[1];
+      return rankedMatches.map(match => {
+        const match_user_id = Object.keys(match);
+        const matchPercent = match[match_user_id];
         const matchInfo = grabMatchesInfo[match_user_id];
         const name = matchInfo.full_name;
         const insta = matchInfo.insta_id;
         const image = matchInfo.image_url;
-
         return (
           <div className="oneResult">
             <Result key={match_user_id} matchData={{ image, name, insta, matchPercent }}/>
           </div>
         )
-    })
+      })
+    }
   }
-}
-
-
   componentDidMount() {
     const currentUserString = localStorage.getItem('currentUser');
     const currentUser = JSON.parse(currentUserString);
-    const user_id = currentUser.user_id || 2 ;    
+    const user_id = currentUser.user_id || 2 ; 
+    this.setState({ user_id })   
     this.socket = io('http://localhost:5001');
     this.socket.on('userMatches', (userMatches) => {
-      const thisUser = userMatches[user_id];
-      this.setState({ 
-        rankedMatches: thisUser,
-        grabMatchesInfo: userMatches['some_key_that_gives_me_dummy_user_info']
-      })
+      this._handleMatchResults(userMatches);
     });
   }
-
   render() {
-    const results = (<div>{this._handleMatchResults()}</div>);
+    const results = (<div>{this.matchResults()}</div>);
     return (
       <div>
           <Helmet>
