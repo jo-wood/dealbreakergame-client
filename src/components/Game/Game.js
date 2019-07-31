@@ -128,7 +128,7 @@ class Game extends Component {
   }
 
   componentDidMount = () => {
-    this.socket = io('http://localhost:5001');
+    this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:5001');
     this._getUserInfo();
       //! load secret triggerStart key for dev:
     this.socket.on('sendUserInfo', (userCall) => this._handleSocketMessage('sendUserInfo', userCall));  
