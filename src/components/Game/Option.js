@@ -5,12 +5,12 @@ class Option extends Component {
   render() {
     const {  option, id } = this.props;
       return (
-        <div>
+        <div className="hiddenCB">
           <input
             key={id}
             name={option}
             type="checkbox"/>
-          <label id={id}>{option}</label>
+          <p id={id}>{option}</p>
         </div>
       );
   }

@@ -5,19 +5,17 @@ label {
   transition: all .6s;
 }
 
-.hiddenCB h1 {
+.question h1 {
   text-transform: none;
-  color: rgb(48, 47, 47);
-  margin: 0;
+  color: rgb(37, 37, 37);
+  margin: 1vh 0;
   display: block;
   width: 100%;
-  margin-bottom: 2vh;
   font-size: 1.7em;
 }
 
 .hiddenCB div {
-  display: block;
-  float: left;
+  width: 100%;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -29,9 +27,10 @@ label {
   
 }
 
-.hiddenCB label {
-  
-  cursor: pointer;
+.hiddenCB p {
+  margin: 0;
+  padding: 2vh 0;
+  width: 100%;
 }
 
 .hiddenCB input[type="checkbox"]+label:hover{
@@ -47,9 +46,10 @@ label {
 }
 
 .timer {
-    position: fixed;
-    bottom: 10vh;
-    right: 0;
+  position: fixed;
+  bottom: 0.5vh;
+  right: 0.5vh;
+  z-index: 99;
 }
 
 .CircularProgressbar {
@@ -58,21 +58,28 @@ label {
 }
 
 .CircularProgressbar .CircularProgressbar-path {
-  stroke: rgba(104, 199, 16, 0.8);
+  stroke: rgba(138, 235, 48, 0.8);
+}
+
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: rgba(138, 235, 48, 0.8);
+  font-size: 2em;
+  font-family: sans-serif;
+  font-weight: 900;
 }
 
 .optionBlock {
-
   width: 100%;
   font-size: 1em;
 }
 
 .optionButton {
-  text-align: left;
+  text-align: center;
   float:left;
   display: block;
-  width: 80%;
-  margin-left: 2vh;
+  width: 96%;
+  margin: 1vh;
   background-color: white;
   border-radius: 4%;
   border: 1px solid;
@@ -86,5 +93,6 @@ label {
 
   .question {
     width: 100%;
-    height: 40vh;
+    height: 46vh;
   }
+
