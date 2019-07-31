@@ -22,7 +22,8 @@ class Game extends Component {
       gif_url: "https://giphy.com/embed/xUA7baCMQfFkvG5BdK",
       questionCount: 1,
       timerTime: undefined,
-      gameOver: false
+      gameOver: false,
+      errorMessage: false
     }
   }
 
@@ -111,20 +112,27 @@ class Game extends Component {
     let userInfo = {};
     const currentUserString = localStorage.getItem('currentUser');
     const currentUser = JSON.parse(currentUserString);
-    // just send id and pic so that sockets can broadcast this data back on all current users for GameMembers Component
-    // use dummy user_id since Jo not signed in yet and user_id is null
-    const user_id = currentUser.user_id || 2 ;
-    //userInfo[user_id] = currentUser.profile_picture;
-    userInfo = {
-      user_id: user_id,
-      profile_picture: currentUser.profile_picture,
-      full_name: currentUser.full_name,
-      instagram_id: currentUser.instagram_id,
-      username: currentUser.username
+
+    if (currentUser) {
+      let user_id = currentUser.user_id;
+      if (user_id === null) {
+        user_id = 2;
+      }
+      userInfo = {
+        user_id: user_id,
+        profile_picture: currentUser.profile_picture,
+        full_name: currentUser.full_name,
+        instagram_id: currentUser.instagram_id,
+        username: currentUser.username
+      }
+      this.setState({ user_id })
+      this.socket.emit('newUser', userInfo);
+    } else {
+      this.setState({
+        errorMessage: "You must be signed up or logged in order to play! "
+      })
     }
-    this.setState({ user_id })
-    const socket = this.socket;
-    socket.emit('newUser', userInfo);
+
   }
 
   componentDidMount = () => {
@@ -151,7 +159,7 @@ class Game extends Component {
   }
 
   render() {
-    const { currentQuestionData, timerTime, userPool, gameOver, user_id, showMembers } = this.state;
+    const { errorMessage, currentQuestionData, timerTime, userPool, gameOver, user_id, showMembers } = this.state;
     console.log("STATE 1 AM: ",this.state)
     const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} _submitAnswer={this._submitAnswer} q={currentQuestionData} />)
     const sendResults = (gameOver) && ( < Redirect to= '/results' currentUser={ user_id } /> );
@@ -165,12 +173,25 @@ class Game extends Component {
             <meta name="description" content="Dealbreaker Game is live and matches are being made" />
         </Helmet>
         <div className="Main">
-          <Host gif={this.state.gif_url}/>
-          { renderQ }
-  
-          <GameTimer timeLeft={ timerTime }/>
-          <button className="hideInFooter" onClick={this.toggle}><i class="fa fa-chevron-up"></i></button>                
-          <GameFooter route={'game'} toggle={showMembers} userPool={userPool} />
+        { (!errorMessage) ? 
+          ( 
+          < div >
+            <Host gif={this.state.gif_url}/>
+            {renderQ}
+            <GameTimer timeLeft={ timerTime }/>
+              <button className="hideInFooter" onClick={this.toggle}><i class="fa fa-chevron-up"></i></button>                
+            <GameFooter route={'game'} toggle={showMembers} userPool={userPool} />
+          </div>
+          ) :
+          (
+            <div>
+              <h1>{errorMessage}</h1>
+            </div>
+          )
+          
+
+
+        }
         </div>
       </div>
     );
