@@ -59,11 +59,11 @@ class Waiting extends Component {
                   <div className="clock-col">
                     {props.hours}
                   </div> 
-                  <span className="colon"> : </span>
+                  <span className="colon">:</span>
                   <div className="clock-col">
                     {props.minutes}
                   </div>
-                  <span className="colon"> : </span>
+                  <span className="colon">:</span>
                   <div className="clock-col">
                     {props.seconds}
                   </div>

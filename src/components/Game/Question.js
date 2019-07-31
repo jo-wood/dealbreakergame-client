@@ -30,7 +30,7 @@ class Question extends Component {
     const showOptions = (<div className="optionBlock">{this._renderOptions(q)}</div>)
     return (
       <div className="hiddenCB">
-        <div>
+        <div className="question">
           <h1>{q.context}</h1>
           {showOptions}
         </div>   

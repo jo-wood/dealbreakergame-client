@@ -17,12 +17,12 @@
   width: 6vh;
   font-size: 2em;
   font-weight: bold;
-  border-radius: 4%;
+  border-radius: 10%;
   display: inline-block;
 }
 
 .colon {
-  font-size: 2em;
+  font-size: 1em;
   font-weight: bold;
   color: rgb(141, 135, 135);
   padding: 0;

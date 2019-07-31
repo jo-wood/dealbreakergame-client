@@ -8,6 +8,8 @@ import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
 import  dummyUserPool  from './socketMessages/io_dummy_userPool'
 require('dotenv').config({ path: '../../' })
+// "https://giphy.com/embed/xUPGcu23Fclb3OAlQQ"
+// "https://giphy.com/embed/xUA7baCMQfFkvG5BdK"
 
 class Game extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class Game extends Component {
       userPool: {},
       showMembers: false,
       currentQuestionData: null,
-      gif_url: 'https://media.giphy.com/media/xUA7baCMQfFkvG5BdK/giphy.gif',
+      gif_url: "https://giphy.com/embed/xUA7baCMQfFkvG5BdK",
       questionCount: 1,
       timerTime: undefined,
       gameOver: false
@@ -128,7 +130,7 @@ class Game extends Component {
     this.socket = io('http://localhost:5001');
     this._getUserInfo();
       //! load secret triggerStart key for dev:
-      //this.socket.emit('triggerStart', ('true'));
+      this.socket.emit('triggerStart', ('true'));
     this.socket.on('sendUserInfo', (userCall) => this._handleSocketMessage('sendUserInfo', userCall));  
     this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
     this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
