@@ -11,23 +11,27 @@ class Host extends Component {
     this.state= {
       user_id: null,
       rankedMatches: null,
-      grabMatchesInfo: null
+      grabMatchesInfo: null,
+      errorMessage: false
     }
   }
 
   _handleMatchResults = ({ rankedMatches, grabMatchesInfo } ) => {
-    console.log("rankedMatches:",rankedMatches,", grabMatchesInfo: ",grabMatchesInfo);
-      const currentUser = this.state.user_id;
-      const matchesArray = rankedMatches[currentUser].slice(0, 3);      
-      this.setState({ 
+    const currentUser = this.state.user_id;
+    if (rankedMatches[currentUser]) {
+
+      const matchesArray = rankedMatches[currentUser].slice(0, 3);
+      this.setState({
         rankedMatches: matchesArray,
         grabMatchesInfo: grabMatchesInfo
       })
+    }
+
   } 
   matchResults() {
     const { rankedMatches, grabMatchesInfo } = this.state;
     console.log("STATE: ",rankedMatches, grabMatchesInfo)
-    if (!rankedMatches) {
+    if (rankedMatches.length < 0) {
       return (
         <div className="Main">
           <div className="lds-heart"><div></div></div> 
@@ -54,8 +58,17 @@ class Host extends Component {
   componentDidMount() {
     const currentUserString = localStorage.getItem('currentUser');
     const currentUser = JSON.parse(currentUserString);
-    const user_id = currentUser.user_id || 2 ; 
-    this.setState({ user_id })   
+    if (currentUser) {
+      let user_id = currentUser.user_id;
+      if (user_id === null) {
+        user_id = 2;
+      }
+      this.setState({ user_id })
+    } else {
+      this.setState({
+        errorMessage: "You must be signed up or logged in order to play! "
+      })
+    }
     this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:5001');
     this.socket.on('userMatches', (userMatches) => {
       console.log("Server sent final game Data: ", userMatches);
@@ -63,7 +76,8 @@ class Host extends Component {
     });
   }
   render() {
-    const results = (<div>{this.matchResults()}</div>);
+    const { errorMessage, rankedMatches} = this.state;
+    const results = (rankedMatches) ? (<div>{this.matchResults()}</div>) : (<div><h1>Uh oh, looks like cupid is off today!</h1><p>Please try again tomorrow</p></div>)
     return (
       <div>
           <Helmet>
@@ -72,9 +86,20 @@ class Host extends Component {
             <meta name="description" content="Today's Game results for signed in users. See who you have matched with" />
           </Helmet>
       <div className="Main">
-        {results}
+        { (!errorMessage) ? 
+          ( 
+            <div>
+              {results}
+            </div>
+          ) :
+          (
+              <div>
+                {errorMessage}
+              </div>
+          )
+        }
       </div>
-      </div>
+    </div>
     );
   }
 }
