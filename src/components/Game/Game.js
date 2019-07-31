@@ -47,6 +47,7 @@ class Game extends Component {
       case 'NextGameRoomQuestion':
         this.setState({
           currentQuestionData: payload,
+          gif_url: payload.gif_url,
           questionCount: questionCount + 1
         });
         break;
@@ -130,7 +131,6 @@ class Game extends Component {
     this.socket = io('http://localhost:5001');
     this._getUserInfo();
       //! load secret triggerStart key for dev:
-      this.socket.emit('triggerStart', ('true'));
     this.socket.on('sendUserInfo', (userCall) => this._handleSocketMessage('sendUserInfo', userCall));  
     this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
     this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
@@ -152,6 +152,7 @@ class Game extends Component {
 
   render() {
     const { currentQuestionData, timerTime, userPool, gameOver, user_id, showMembers } = this.state;
+    console.log("STATE 1 AM: ",this.state)
     const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} _submitAnswer={this._submitAnswer} q={currentQuestionData} />)
     const sendResults = (gameOver) && ( < Redirect to= '/results' currentUser={ user_id } /> );
     
