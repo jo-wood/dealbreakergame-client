@@ -1,0 +1,84 @@
+/*  results */
+
+
+.oneResult {
+  display: block;
+  float: left;
+  width: 100%;
+  padding-left: 5%;
+}
+
+.match-details {
+  padding: 3em;
+}
+
+.match-details h3,
+.match-details p,
+.match-details a {
+  font-size: 1.2em;
+  margin: 0;
+}
+
+.match-details h3 {
+  color: rgb(241, 13, 32);
+}
+
+.match-details p {
+  color: rgb(41, 40, 40);
+}
+
+.match-details span {
+  font-weight: bold;
+}
+
+.results-cropper {
+    width: 10em;
+    height: 10em;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 2%;
+    float: left;
+    clear: both;
+}
+
+.results-profile {
+  display: block;
+  max-height: 100%;
+  margin: auto;
+  position: absolute;
+  top: -100%;
+  right: -100%;
+  bottom: -100%;
+  left: -100%;
+}
+
+.follow-box  span{
+  display: block;
+  color: white;
+
+
+  text-decoration: none;
+}
+
+.follow-box span {
+  font-weight: lighter;
+}
+
+.follow-box .instagram  {
+  display: inline-block;
+  margin: auto;
+    margin-left: 2%;
+      font-size: 0.8em;
+      font-weight: lighter;
+  width: 5vh;
+  height: 5vh;
+  text-align: center;
+  border-radius: 5%;
+  color: #fff;
+  font-size: 5vh;
+  line-height: 5vh;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, .25);
+}

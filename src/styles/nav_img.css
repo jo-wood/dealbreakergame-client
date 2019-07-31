@@ -1,0 +1,23 @@
+
+/*  circle backdrop */
+
+ul.nav-links {
+  margin-right: 0;
+  margin-left: 5vh;
+}
+
+.circle {
+  width: 5vh;
+  height: 5vh;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.circle img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+  
+}

@@ -39,18 +39,39 @@ class Waiting extends Component {
   render() {
     const { gameStarted } = this.state;
     return (
-      <div>
+      <div className="Main">
           <Helmet>
             <meta charSet="utf-8" />
             <title>Waiting Room</title>
             <meta name="description" content="Waiting room page for Dealbreaker game, game is only avaliable after 8 PM local time" />
           </Helmet>
-          <h2>The Game Breaks Out at <br /><span>8:00 PM</span></h2>
-            <ReactCountdown
-              date={this.state.nextGameTime}
-              renderer={props => <div className="nextGameCountdown">{props.hours} : {props.minutes} : {props.seconds}</div>}
-              />
-            <ChatRoom />
+      <div className="Waiting">
+          <h2>The Game Breaks Out at  <br />
+            <span className="bold">
+            8:00 PM <br /></span> 
+          </h2>
+      </div>
+      <ReactCountdown
+          date={this.state.nextGameTime}
+          renderer={props => {
+            return (
+              <div className="clock">    
+                  <div className="clock-col">
+                    {props.hours}
+                  </div> 
+                  <span className="colon"> : </span>
+                  <div className="clock-col">
+                    {props.minutes}
+                  </div>
+                  <span className="colon"> : </span>
+                  <div className="clock-col">
+                    {props.seconds}
+                  </div>
+              </div>
+            )}
+          }
+      />
+      <ChatRoom />
         {gameStarted && <Redirect to='/game' />  }
       </div>
     );
