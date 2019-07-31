@@ -50,11 +50,11 @@ class Nav extends React.Component {
     //console.log(this.props);
     return (
       <nav>
-      {localStorage.getItem('currentUser') !== null && this.state.user_id === null ? this._handleUserInfo() : null }
         <a href="/" className="logo">
           <h1>Deal<strong>Breaker</strong></h1>
         </a>
         <ul className="nav-links">
+          {localStorage.getItem('currentUser') !== null && this.state.user_id === null ? this._handleUserInfo() : null}
           {navLink}
         </ul>
       </nav>
