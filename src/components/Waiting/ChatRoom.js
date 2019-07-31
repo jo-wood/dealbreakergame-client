@@ -32,10 +32,13 @@ class ChatRoom extends Component {
   _handleOnSubmit = (event) => {
     event.preventDefault();
     let messageInput = event.target.children[0];
-    const socket = this.socket;
-
-    socket.emit('message', { chatMessage: messageInput.value });
-    messageInput.value = "";
+    if (messageInput.value.trim() === "") {
+      // don't submit empty message
+    } else {
+      const socket = this.socket;
+      socket.emit('message', { chatMessage: messageInput.value });
+      messageInput.value = "";
+    }
   }
 
   renderChat(chatlog) {
