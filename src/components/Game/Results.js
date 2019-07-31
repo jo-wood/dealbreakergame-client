@@ -15,18 +15,18 @@ class Host extends Component {
     }
   }
 
-  _handleMatchResults({ rankedMatches, grabMatchesInfo } ) {
-      const thisUser = rankedMatches;
-      const firstMatch = thisUser[0];
-      const secondMatch = thisUser[1];
-      const thirdMatch = thisUser[2];      
+  _handleMatchResults = ({ rankedMatches, grabMatchesInfo } ) => {
+    console.log("rankedMatches:",rankedMatches,", grabMatchesInfo: ",grabMatchesInfo);
+      const currentUser = this.state.user_id;
+      const matchesArray = rankedMatches[currentUser].slice(0, 3);      
       this.setState({ 
-        rankedMatches: [firstMatch, secondMatch, thirdMatch],
+        rankedMatches: matchesArray,
         grabMatchesInfo: grabMatchesInfo
       })
   } 
   matchResults() {
     const { rankedMatches, grabMatchesInfo } = this.state;
+    console.log("STATE: ",rankedMatches, grabMatchesInfo)
     if (!rankedMatches) {
       return (
         <div className="Main">
@@ -36,12 +36,13 @@ class Host extends Component {
       )
     } else {
       return rankedMatches.map(match => {
+        console.log("MAPPED MATCH: ", match)
         const match_user_id = Object.keys(match);
         const matchPercent = match[match_user_id];
         const matchInfo = grabMatchesInfo[match_user_id];
         const name = matchInfo.full_name;
         const insta = matchInfo.insta_id;
-        const image = matchInfo.image_url;
+        const image = matchInfo.img;
         return (
           <div className="oneResult">
             <Result key={match_user_id} matchData={{ image, name, insta, matchPercent }}/>
@@ -57,6 +58,7 @@ class Host extends Component {
     this.setState({ user_id })   
     this.socket = io('http://localhost:5001');
     this.socket.on('userMatches', (userMatches) => {
+      console.log("Server sent final game Data: ", userMatches);
       this._handleMatchResults(userMatches);
     });
   }
