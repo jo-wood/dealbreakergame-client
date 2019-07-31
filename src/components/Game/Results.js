@@ -14,6 +14,7 @@ class Results extends Component {
   }
 
   calculatingMatches() {
+    
     return (
       <div>
         <div className="lds-heart"><div></div></div> 

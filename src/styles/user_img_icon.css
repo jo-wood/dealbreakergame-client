@@ -12,11 +12,7 @@
   float: left;
 }
 
-.crop img,
-.fullblur img,
-.halfblur img,
-.thirdblur img,
-.noblur img {
+.crop img {
   display: block;
   max-height: 100%;
   margin: auto;
@@ -26,28 +22,42 @@
   bottom: -100%;
   left: -100%;
   float:left;
-  
 }
 
 
 /*  blur settings */
 
-.fullblur img,
-.halfblur img,
-.thirdblur img,
-.noblur img {
-  filter: blur(10px);
-}
-
-.halfblur img {
-  filter: blur(5px);
-}
-
-.thirdblur img {
-  filter: blur(1px);
-}
-
 .noblur img {
   filter: blur(0px);
 }
+
+.eightyblur img {
+  filter:blur(4px)
+}
+
+.sevenityblur img {
+  filter: blur(6px);
+}
+
+.sixtyblur img {
+  filter: blur(8px);
+}
+
+.fiftyblur img {
+  filter: blur(10px)
+}
+
+.fortyblur img {
+  filter: blur(12px);
+}
+
+.thirtyblur img {
+  filter: blur(14px)
+}
+
+.fullblur img {
+  filter: blur(16px)
+}
+
+
 
