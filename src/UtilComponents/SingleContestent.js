@@ -22,10 +22,15 @@ class SingleContestent extends Component {
               <img src={img} key={key} alt="user_img" />
             </div>
         )
-      default:
+      case (match <= 100):
         return (
             <div className="crop noblur">
               <img src={img} key={key} alt="user_img" />
+            </div>
+        )
+      default:
+        return (
+            <div>
             </div>
         )
     }
