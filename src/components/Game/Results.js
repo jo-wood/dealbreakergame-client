@@ -30,7 +30,7 @@ class Host extends Component {
     if (!rankedMatches) {
       return (
         <div className="Main">
-          <div class="lds-heart"><div></div></div> 
+          <div className="lds-heart"><div></div></div> 
           <h2> Calculating your top matches!.... </h2>
         </div>
       )

@@ -26,11 +26,12 @@ function Home() {
         </div>
         <div className="signin-box">        
           <a href={oauth_url}>
-            <span className="bold">SIGN IN <br/></span> WITH  <br/>
-          </a>          
+            <span className="signin-box">SIGN IN <br/></span> WITH  <br/>
+
           <div className="instagram">  
             <span className="fa fa-instagram"></span>       
           </div>
+          </a>          
         </div>
       </div>
     </div>

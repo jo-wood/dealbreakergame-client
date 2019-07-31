@@ -5,14 +5,12 @@ class Host extends Component {
   render() {
     return (
       <div className="gifs">
-        <iframe 
-          title="questionGifs"
-          src={this.props.gif}
-          frameBorder="0"
-          className="giphy-embed"
-          allowFullScreen>
-        </iframe>       
-          {/* <img src={HostPoster} height="450px" alt="placeholder for host video"/> */}
+      <iframe
+        title="questionGifs"
+        src={this.props.gif} 
+        width="100%" height="50%"
+        fameBorder="0" class="giphy-embed" 
+        allowFullScreen></iframe>   
       </div>
     );
   }
