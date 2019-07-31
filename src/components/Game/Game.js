@@ -162,7 +162,7 @@ class Game extends Component {
     const { errorMessage, currentQuestionData, timerTime, userPool, gameOver, user_id, showMembers } = this.state;
     console.log("STATE 1 AM: ",this.state)
     const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} _submitAnswer={this._submitAnswer} q={currentQuestionData} />)
-    const sendResults = (gameOver) && ( < Redirect to= '/results' currentUser={ user_id } /> );
+    const sendResults = (gameOver) && ( <Redirect to= '/results' user_id={ user_id } /> );
     
     return (
       <div>

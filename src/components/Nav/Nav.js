@@ -11,8 +11,11 @@ class Nav extends React.Component {
   }
 
   renderNav() {
-    const { profileImage, user_id } = this.state;
+    let { profileImage, user_id } = this.state;
     if (profileImage) {
+      if (!user_id) {
+        user_id = 0;
+      }
       return (
         <div className="circle">
           <img src={profileImage} key={user_id} alt="user_img" />
