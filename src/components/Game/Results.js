@@ -57,7 +57,7 @@ class Host extends Component {
     const currentUser = JSON.parse(currentUserString);
     const user_id = currentUser.user_id || 2 ; 
     this.setState({ user_id })   
-    this.socket = io('http://localhost:5001');
+    this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:5001');
     this.socket.on('userMatches', (userMatches) => {
       console.log("Server sent final game Data: ", userMatches);
       this._handleMatchResults(userMatches);
