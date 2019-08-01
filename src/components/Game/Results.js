@@ -43,9 +43,10 @@ class Host extends Component {
         const name = matchInfo.full_name;
         const insta = matchInfo.insta_id;
         const image = matchInfo.img;
+        const username = matchInfo.username;
         return (
           <div className="oneResult">
-            <Result key={match_user_id} matchData={{ image, name, insta, matchPercent }}/>
+            <Result key={match_user_id} matchData={{ image, name, insta, matchPercent, username }}/>
           </div>
         )
       })
