@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Result extends Component {
   render() {
-    const { name, image, insta, matchPercent } = this.props.matchData;
+    const { name, image, insta, matchPercent, username } = this.props.matchData;
     return (
       <div>
           <div className="results-cropper">
@@ -12,7 +12,7 @@ class Result extends Component {
               <h3>{name}</h3>
               <p><span>{matchPercent}%</span> Match</p>
               <div className="follow-box">        
-                <a href={`/profile{this.props.key}`} target='_blank' rel="noopener noreferrer">Follow</a> 
+                <a href={`http://www.instagram.com/${username}`} target='_blank' rel="noopener noreferrer">Follow</a> 
              </div>
 
             </div> 
