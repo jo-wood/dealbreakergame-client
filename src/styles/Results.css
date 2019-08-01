@@ -9,7 +9,8 @@
 }
 
 .match-details {
-  padding: 3em;
+  padding: 2em;
+  line-height: 2em;
 }
 
 .match-details h3,
@@ -64,6 +65,15 @@
 .follow-box span {
   font-weight: lighter;
 }
+.follow-box a {
+  background-color: rgba(55, 151, 240, 0.8);
+
+      color: white;
+      padding: 1% 2%;
+      border-radius: 10px;
+      font-weight: 400;
+}
+
 
 .follow-box .instagram  {
   display: inline-block;

@@ -12,11 +12,8 @@ class Result extends Component {
               <h3>{name}</h3>
               <p><span>{matchPercent}%</span> Match</p>
               <div className="follow-box">        
-                <a href={insta} target='_blank' rel="noopener noreferrer">Follow:</a> 
-                  <div className="instagram">  
-                    <span className="fa fa-instagram follow"></span>       
-                  </div>
-              </div>
+                <a href={`/profile{this.props.key}`} target='_blank' rel="noopener noreferrer">Follow</a> 
+             </div>
 
             </div> 
       </div>
