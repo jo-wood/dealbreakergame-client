@@ -7,8 +7,8 @@
 
 # testing
 /coverage
-/src/components/Game/socketMessages
-/public/static
+/src/components/Game/socketMessages*
+/public/static*
 
 
 # production
