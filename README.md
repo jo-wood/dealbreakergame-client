@@ -1,6 +1,6 @@
 # Dealbreaker Game - Real time dating application
 
-![Dealbreaker Logo](./src/images/favicon.png =100x100)
+![Dealbreaker Logo](./src/images/favicon.png)
 
 A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other’s instagram profile.
 
