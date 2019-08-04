@@ -2,7 +2,7 @@
 
 ![Dealbreaker Logo](./src/images/favicon.png | width=100)
 
-A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other’s instagram profile.
+A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other's instagram profile.
 
 **Tech Stack:**
 
