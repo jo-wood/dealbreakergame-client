@@ -11,7 +11,6 @@ class ChatRoom extends Component {
       chatlog: null,
     }
   }
-  
   async componentDidMount() {
     await this.setState({ chatlog: [ "when does the game start?","Has anyone ever played?", "hello", "I can't wait to find love", "what is this ?"]})
     this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:5001');
@@ -20,15 +19,12 @@ class ChatRoom extends Component {
       this._handleOnNewMessage(messageData);
     });
   }
-
   _handleOnNewMessage = (messageData) => {
-    console.log(messageData.chatMessage);
     const oldMessageLog = this.state.chatlog;
     oldMessageLog.shift();
     const newMessageLog = [...oldMessageLog, messageData.chatMessage];
     this.setState({ chatlog: newMessageLog });
   }
-
   _handleOnSubmit = (event) => {
     event.preventDefault();
     let messageInput = event.target.children[0];
@@ -40,7 +36,6 @@ class ChatRoom extends Component {
       messageInput.value = "";
     }
   }
-
   renderChat(chatlog) {
     return chatlog.map(prompt => {
       return (
@@ -50,7 +45,6 @@ class ChatRoom extends Component {
       )
     });
   }
-
   render() {
     const { chatlog } = this.state;
     const chat = chatlog ? (this.renderChat(chatlog)) : (<h3>Loading Chat ...</h3>)
@@ -68,5 +62,4 @@ class ChatRoom extends Component {
     );
   }
 }
-
 export default ChatRoom;

@@ -1,6 +1,6 @@
 import Countdown from 'react-countdown-date';
 import React, { Component } from 'react';
- 
+
 class ReactCountDown extends Component {
   render() {
     return (
@@ -10,5 +10,4 @@ class ReactCountDown extends Component {
     );
   }
 }
-
 export default ReactCountDown;

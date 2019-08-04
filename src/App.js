@@ -16,9 +16,8 @@ import SignUp from './components/Home/SignUp';
 import Results from './components/Game/Results';
 import Logout from './components/Profile/Logout';
 // Page Styles
-//! DO NOT ADJUST STYLE IMPORTS
+//! do not adjust order of styles
 import './styles/App.scss';
-
 import './styles/Game.scss';
 import './styles/Waiting.css';
 // Util Styles
@@ -27,9 +26,6 @@ import './styles/loader.css';
 import './styles/user_img_icon.css';
 import './styles/nav_img.css';
 import './styles/Results.css';
-
-// import './styles/profile.css';
-
 require('dotenv').config()
 
 function App() {
@@ -55,6 +51,4 @@ function App() {
     </Router >
   );
 }
-
-
 export default App;

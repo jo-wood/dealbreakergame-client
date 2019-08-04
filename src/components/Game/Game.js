@@ -6,10 +6,7 @@ import GameFooter from '../Footer/GameFooter';
 import { Redirect } from 'react-router-dom'
 import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
-import  dummyUserPool  from './socketMessages/io_dummy_userPool'
 require('dotenv').config({ path: '../../' })
-// "https://giphy.com/embed/xUPGcu23Fclb3OAlQQ"
-// "https://giphy.com/embed/xUA7baCMQfFkvG5BdK"
 
 class Game extends Component {
   constructor(props) {
@@ -26,7 +23,6 @@ class Game extends Component {
       errorMessage: false
     }
   }
-
   toggle = () => {
     const {showMembers} = this.state;
     if (showMembers) {
@@ -38,9 +34,7 @@ class Game extends Component {
         showMembers: true
       });
     }
-
   }
-
   _handleSocketMessage(type, payload) {
     const { questionCount, user_id, userPool} = this.state;
     switch (type) {
@@ -55,28 +49,19 @@ class Game extends Component {
       case 'gameRoomTimer':
         this.setState({ timerTime: payload });
         break;
-      case 'sendUserInfo':
-        if (payload === "true") {
-          
-        }
-        break;
+      // case 'sendUserInfo':
+      //   if (payload === "true") {
+      //   }
+      //   break;
       case 'userPool':
-        console.log('USER-POOL: ', payload)
         this.setState({ userPool: payload });
         break;
-
       case 'perQMatches':
-        console.log('MATCH-AVG-PAYLOAD', payload);
-        let users = Object.keys(userPool);
-        //remove dummy and use payload instead when not in dev
-        
         let matchDetails = payload[user_id];
-        console.log(matchDetails);
         const updatePool = new Promise( (resolve, reject) => {
           const newUserPool = {
           test: true
           };
-          
           for (let matchUser in matchDetails) {
             if (userPool.hasOwnProperty(matchUser)) {
               newUserPool[matchUser] = {
@@ -87,17 +72,10 @@ class Game extends Component {
           }
           resolve(newUserPool);
         });
-
         updatePool.then( (newPool) => {
-          console.log('User-Pool: ', userPool);
-          console.log('newUserPool: ', newPool);
           this.setState({userPool: newPool}, () => {
-            console.log('AFTER-STATE: ', newPool);
           });
         });
-
-
-
         break;
       case 'gameOver':
         this.setState({  gameOver: true });
@@ -107,12 +85,10 @@ class Game extends Component {
         break;
     }
   }
-
   _getUserInfo = () => {
     let userInfo = {};
     const currentUserString = localStorage.getItem('currentUser');
     const currentUser = JSON.parse(currentUserString);
-
     if (currentUser) {
       let user_id = currentUser.user_id;
       if (user_id === null) {
@@ -132,13 +108,10 @@ class Game extends Component {
         errorMessage: "You must be signed up or logged in order to play! "
       })
     }
-
   }
-
   componentDidMount = () => {
     this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:5001');
     this._getUserInfo();
-      //! load secret triggerStart key for dev:
     this.socket.on('sendUserInfo', (userCall) => this._handleSocketMessage('sendUserInfo', userCall));  
     this.socket.on('userPool', (userPoolData) => this._handleSocketMessage('userPool', userPoolData));
     this.socket.on('initializeGame', (startData) => this._handleSocketMessage('initializeGame', startData));
@@ -147,7 +120,6 @@ class Game extends Component {
     this.socket.on('gameOver', (gameOver) => this._handleSocketMessage('gameOver', gameOver));
     this.socket.on('perQMatches', (usersAnswers) => this._handleSocketMessage('perQMatches', usersAnswers));
   }
-
   _submitAnswer = (answer) => {
     const { currentQuestionData, user_id } = this.state;
     let userAnswer = {
@@ -163,40 +135,34 @@ class Game extends Component {
     console.log("STATE 1 AM: ",this.state)
     const renderQ = (currentQuestionData) && (<Question key={currentQuestionData.id} _submitAnswer={this._submitAnswer} q={currentQuestionData} />)
     const sendResults = (gameOver) && ( <Redirect to= '/results' user_id={ user_id } /> );
-    
-    return (
-      <div>
-        { sendResults }
-        <Helmet>
-            <meta charSet="utf-8" />
-            <title>Live Game</title>
-            <meta name="description" content="Dealbreaker Game is live and matches are being made" />
-        </Helmet>
-        <div className="Main">
-        { (!errorMessage) ? 
-          ( 
-          < div >
-            <Host gif={this.state.gif_url}/>
-            {renderQ}
-            <GameTimer timeLeft={ timerTime }/>
-              <button className="hideInFooter" onClick={this.toggle}><i class="fa fa-chevron-up"></i></button>                
-            <GameFooter route={'game'} toggle={showMembers} userPool={userPool} />
-          </div>
-          ) :
-          (
-            <div>
-              <h1>{errorMessage}</h1>
-            </div>
-          )
-          
-
-
-        }
+  return (
+    <div>
+      { sendResults }
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>Live Game</title>
+          <meta name="description" content="Dealbreaker Game is live and matches are being made" />
+      </Helmet>
+      <div className="Main">
+      { (!errorMessage) ? 
+        ( 
+        < div >
+          <Host gif={this.state.gif_url}/>
+          {renderQ}
+          <GameTimer timeLeft={ timerTime }/>
+            <button className="hideInFooter" onClick={this.toggle}><i class="fa fa-chevron-up"></i></button>                
+          <GameFooter route={'game'} toggle={showMembers} userPool={userPool} />
         </div>
+        ) :
+        (
+          <div>
+            <h1>{errorMessage}</h1>
+          </div>
+        )
+      }
       </div>
+    </div>
     );
   }
-
 }
-
 export default Game;

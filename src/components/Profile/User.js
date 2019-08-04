@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class User extends Component {
-
   calcAge(dateString) {
     var birthday = new Date(dateString).getTime()
     var today = Date.now();
@@ -12,7 +11,6 @@ class User extends Component {
       </div>
     );
   }
-
   checkIdentifyPreference(gender) {
     if (gender === 'preferNotToSay') {
       return false;
@@ -20,7 +18,6 @@ class User extends Component {
       return true;
     }
   }
-  
   renderMyProfile(min, max) {
     return (
       <div className="my_profile">
@@ -29,7 +26,6 @@ class User extends Component {
       </div>
     );
   }
-
   renderMatchProfile(name, handle) {
     const insta_link = `https://www.instagram.com/${handle}/`;
     return(
@@ -39,9 +35,6 @@ class User extends Component {
       </div>    
     );  
   }
-
-
-  
   render() {
     const age_range_max = this.props.profile.age_perference_max;
     const age_range_min = this.props.profile.age_perference_min;
@@ -62,7 +55,5 @@ class User extends Component {
       </div>  
     );
   }
-
 }
-
 export default User;

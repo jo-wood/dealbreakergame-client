@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class SingleContestent extends Component {
-
   renderPic({ key, img, match } ) {
     switch (true) {
       case (match < 33):
@@ -59,7 +58,6 @@ class SingleContestent extends Component {
         )
     }
   }
-
   render() {
     const renderMatchPercentBlur = this.renderPic(this.props)
     return (
@@ -68,7 +66,5 @@ class SingleContestent extends Component {
       </div>      
     );
   }
-
 }
-
 export default SingleContestent;

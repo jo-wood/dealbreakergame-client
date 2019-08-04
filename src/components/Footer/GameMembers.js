@@ -3,7 +3,6 @@ import SingleContestent from '../../UtilComponents/SingleContestent'
 require('dotenv').config({ path: '../../' })
 
 class GameMembers extends Component {
-
   renderMemberInformation(userPool) {
     const users = Object.values(userPool)
     return users.map(user => {
@@ -13,10 +12,8 @@ class GameMembers extends Component {
           <div className="frame-round">
               <SingleContestent match={percent} key={user} img={profile} />
           </div>
-        )
-    })
+      )})
   }
-
   render() {
     const members = this.renderMemberInformation(this.props.userPool)
     return (
@@ -26,5 +23,4 @@ class GameMembers extends Component {
     );
   }
 }
-
 export default GameMembers;

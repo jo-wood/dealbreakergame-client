@@ -9,7 +9,6 @@ class Nav extends React.Component {
       profileImage: null
     }
   }
-
   renderNav() {
     let { profileImage, user_id } = this.state;
     if (profileImage) {
@@ -29,9 +28,7 @@ class Nav extends React.Component {
       );
     }
   }
-
   componentDidMount() {
-
     if (localStorage.getItem('currentUser')) {
       const currentUserString = localStorage.getItem('currentUser');
       const currentUser = JSON.parse(currentUserString);
@@ -40,7 +37,6 @@ class Nav extends React.Component {
       this.setState({ profileImage, user_id});      
     } 
   }
-
   render() {
     const navLink = this.renderNav();
     return (
@@ -54,7 +50,5 @@ class Nav extends React.Component {
       </nav>
     );
   }
-
 }
-
 export default Nav;

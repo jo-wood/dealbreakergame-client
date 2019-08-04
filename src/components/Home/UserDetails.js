@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router-dom'
-
 /* Import Components */
 import Select from '../../UtilComponents/Select';
 import RangeInput from '../../UtilComponents/RangeInput'
@@ -10,17 +9,14 @@ import Cookies from 'universal-cookie';
 class UserDetails extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       user: {
-
         instagram_id: null,
         username: null,
         full_name: null,
         access_token: null,
         profile_picture: null,
         profile_picture_hd: null,
-
         ageMonth: '',
         ageDay:'',
         ageYear: '',
@@ -28,7 +24,6 @@ class UserDetails extends Component {
         interestedIn: '',
         ageMin: 18,
         ageMax: 50
-
       },
       detailsUncompleted: true,
       formSubmitted: false,
@@ -38,16 +33,11 @@ class UserDetails extends Component {
       monthOptions: ['01','02','03','04','05','06','07','08','09','10','11','12'],
       dayOptions: ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'],
       yearOptions:[2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982,1981,1980,1979,1978,1977,1976,1975,1974,1973,1972,1971,1970]
-
     }
   }
-
-  /* This life cycle hook gets executed when the component mounts */
-
   componentDidMount = () => {
     const currentUserString = localStorage.getItem('currentUser');
     const currentUser = JSON.parse(currentUserString);
-    
     this.setState({
       user: {
         instagram_id: currentUser.instagram_id,
@@ -58,13 +48,10 @@ class UserDetails extends Component {
         profile_picture_hd: currentUser.profile_picture_hd
       }
     }) 
-
   }
-
   handleFormSubmit = (e) => {
     e.preventDefault();
     let userData = this.state.user;
-
     fetch(`${process.env.REACT_APP_SERVER_URL}/profile/new`,{
         method: "POST",
         body: JSON.stringify(userData),
@@ -74,53 +61,40 @@ class UserDetails extends Component {
         },
       }).then(response => {
         response.json().then(data =>{
-          console.log("Successful: " + data);
           const dataObject = JSON.parse(data);
           if (dataObject.status === "completed") {
             const cookies = new Cookies();
             cookies.set('user_id', dataObject.id, { path: '/' });
-            console.log("new cookie created");
-            
             // Re-save local userObject with user_id
             const currentUserString = localStorage.getItem('currentUser');
             const currentUser = JSON.parse(currentUserString);
             currentUser['user_id'] = dataObject.id;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
-
             // Redirect to waiting room state-change
             this.setState({formSubmitted: true})
           }
         })
     })
   }
-
- handleInput = (e) => {
-   console.log(e);
+  handleInput = (e) => {
     let value = e.target.value;
     let name = e.target.name;
     let entries = this.state.entriesSubmitted;
     entries.add(name);
     this.setState( prevState => {
-       return {
-          user : {...prevState.user, [name]: value},
-          entriesSubmitted: entries,
-          detailsUncompleted: this.state.entriesSubmitted.size === 7 ? false : true
-       }
-    }, () => console.log(this.state.user)
+        return {
+            user : {...prevState.user, [name]: value},
+            entriesSubmitted: entries,
+            detailsUncompleted: this.state.entriesSubmitted.size === 7 ? false : true
+        }
+      }, () => console.log(this.state.user)
     )
 }
-
-
-
   render() {
-    console.log('CURRENT-STATE: ', this.state.user);
-
     return (
       <form className="container" onSubmit={this.handleFormSubmit}>
         {this.state.formSubmitted ? <Redirect to='/waiting' /> : null}
-        
         <label htmlFor={'birthdate'} className="form-label">Birthdate</label>
-
         <Select
                 name={'ageMonth'}
                 options={this.state.monthOptions}
@@ -128,7 +102,6 @@ class UserDetails extends Component {
                 placeholder={'Month'}
                 handleChange={this.handleInput}
                 /> {/* Birthmonth Selection */}
-        
         <Select
                 name={'ageDay'}
                 options={this.state.dayOptions}
@@ -136,7 +109,6 @@ class UserDetails extends Component {
                 placeholder={'Day'}
                 handleChange={this.handleInput}
                 /> {/* Birthday Selection */}
-        
         <Select
                 name={'ageYear'}
                 options={this.state.yearOptions}
@@ -144,7 +116,6 @@ class UserDetails extends Component {
                 placeholder={'Year'}
                 handleChange={this.handleInput}
                 /> {/* Interest Selection */}
-
         <br></br>
         <Select
                 title={"Interested In:"}
@@ -194,5 +165,4 @@ class UserDetails extends Component {
     );
   }
 }
-
 export default UserDetails;

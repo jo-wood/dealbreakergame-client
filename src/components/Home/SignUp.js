@@ -9,7 +9,6 @@ class SignUp extends Component {
       chatlog: null,
     }
   }
-
   render() {
     return (
       <div>
@@ -25,5 +24,4 @@ class SignUp extends Component {
     );
   }
 }
-
 export default SignUp;

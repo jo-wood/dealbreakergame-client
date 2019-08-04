@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 class GameTimer extends Component {
   render() {
-      const value = this.props.timeLeft;
+  const value = this.props.timeLeft;
     return (
       <div className="timer">
           <CircularProgressbar value={value} maxValue={15} text={value} height={"15px"} />

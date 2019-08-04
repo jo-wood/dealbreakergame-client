@@ -14,5 +14,4 @@ class Host extends Component {
     );
   }
 }
-
 export default Host;

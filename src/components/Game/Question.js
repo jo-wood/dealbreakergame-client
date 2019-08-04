@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import Option from './Option'
 
 class Question extends Component {
-
   selectedAnswer = (e) => {
     const selectedAnswer = e.target;
     const answer = selectedAnswer.getAttribute("id");
     this.props._submitAnswer(answer)
   }
-
   _renderOptions(question) {
     const { optionA, optionB, optionC, optionD } = question;
     const options = [ optionA, optionB, optionC, optionD ];
@@ -21,7 +19,6 @@ class Question extends Component {
         <button className="optionButton" onClick={this.selectedAnswer }>
           <Option id={option_id } option={option} />
         </button>
-
       );
     })
   }  
@@ -29,12 +26,10 @@ class Question extends Component {
     const { q } = this.props;
     const showOptions = (<div className="optionBlock">{this._renderOptions(q)}</div>)
     return (
-
-        <div className="question">
-          <h1>{q.context}</h1>
-          {showOptions}
-        </div>   
-
+      <div className="question">
+        <h1>{q.context}</h1>
+        {showOptions}
+      </div>   
     );
   }
 }

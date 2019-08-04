@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
 
 class Footer extends Component {
-
   renderFooter() {
     const currentUrl = window.location.href;
     const waitingPath = currentUrl.includes('waiting');
     const gamePath = currentUrl.includes('game');
     const profilePath = currentUrl.includes('profile')
-
     switch (true) {
       case waitingPath:
       case profilePath:        
@@ -18,14 +15,12 @@ class Footer extends Component {
             <div className="plainFooter"></div> 
           </footer>
         )    
-
       case gamePath:
         return (
           <footer>
               <div className="gameFooterHide"></div>
           </footer>
         )         
-
       default:
           return (
             <footer>
@@ -41,15 +36,8 @@ class Footer extends Component {
           )        
     }
   }
-
   render() {
-    return (
-    <div>
-      { this.renderFooter() }
-    </div>
-    );
+    return (<div>{ this.renderFooter() }</div> );
   }
-
 }
-
 export default Footer;

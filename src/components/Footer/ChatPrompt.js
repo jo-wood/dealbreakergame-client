@@ -9,7 +9,5 @@ class ChatPrompt extends Component {
       </div>
     );
   }
-
 }
-
 export default ChatPrompt;

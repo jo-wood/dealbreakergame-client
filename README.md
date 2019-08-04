@@ -1,68 +1,69 @@
-![Dealbreaker Logo](./src/images/favicon.png)
-# Dealbreaker - Real time dating application
+# Dealbreaker Game - Real time dating application
 
-Another dating app?! These apps are becoming more stressful than job interviews...
+![Dealbreaker Logo](./src/images/favicon.png | width=100)
 
-Curiosity leads to optimism, optimism leads to excitement, and excitement leads to... deflated and lonely watching Homeland for 7 straight hours on a Sunday night... just me?...
+A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other’s instagram profile.
 
-We want the ease of swiping left or right and matching with people whose pictures we like (because of course physical attraction matters! We aren't your grandma - it's fine)
+**Tech Stack:**
 
-But we know that you also value a connection and conversation that helps you decide if you'll take the scary plunge and, you know, actually GO on a date.
+* ReactJS
 
-But convo's such as:
+*Backend:*
 
-"Hey!"
-"Hello"
-"Nice photo !"
-"Thanks!"
-"Like cats?"
-"no."
+* NodeJS (express)
+* Socket.IO
+* PostgreSQL
+* Instagram API (OAuth)
 
-...........
-Last message was 120 days ago
+## Problem Statement
 
-ENTER
+The current dating app market is quite polarized:
 
-Dealbreakers. the app.
+* either viewed as more serious with convoluted questionnaires and heavy input required at sign-up
+* or swipe left/right by very superficial means (and generic conversations that span over days)
+
+But both of these extremes matter, so what's just right?
+
+Dealbreaker. The dating game app.
 No excuses anymore! We've got your dealbreakers covered.
-
-Problem Statement
-
-- A dating app that gives you connection first, with easy effort on the user to start a relevant conversation (at the time you actually feel like having a conversation) but still values your potential importance on physical attraction as well
 
 ## Proposed Solution
 
-- Think, HQ meets The Dating Game
-- Every night at 8:00, jump onto the dealbreakers game where contestants have also joined
-- All contestants waiting to play the game are pooled in images at the bottom of the screen, but... they are blurred out
-- In real-time, as the clock strikes 8:00, the current game is LOCKED IN and for 5 mins, questions appear with multiple choice answers
-- Submit your answer to the question - and when the timer on that question ends - based on your % match, contestants pictures start to clear
-- But we still have some questions to go!
-- As you reach the end of the game, your top matches will be fully revealed! And you can start a conversation with plenty to talk about (these questions will guarantee that!)
+A dating app that gives you connection first, with easy effort on the user to start a relevant conversation (at the time you actually feel like having a conversation) but still values your potential importance on physical attraction as well
 
+* Think, HQ Trivia meets The Dating Game show
+* Every night at 8:00, jump onto the dealbreaker game where contestants have also joined
+* All contestants waiting to play the game are pooled in images at the bottom of the screen, but... they are blurred out
+* In real-time, as the clock strikes 8:00, the current game is LOCKED IN and for 5 mins, questions appear with multiple choice answers
+* Submit your answer to the question - and when the timer on that question ends - based on your % match, contestants pictures start to clear
+* But we still have some questions to go!
+* As you reach the end of the game, your top matches will be fully revealed! And you can start a conversation with plenty to talk about (these questions will guarantee that!)
 
-## Prototypes (Sketch Designs)
-Mobile Designs: https://silent-pine-2904.animaapp.io
+## Primary Dependencies
 
-Desktop Designs: Not currently avalaible for online preview
+*This application is built in connection with the backend server in repo:* [backend-server](https://github.com/jo-wood/dealbreakergame-backend)
 
+**Note that this application is built using Instagram's API which keeps development in sandbox mode until privacy requirements are approved. In order to run through the game's questions, must trigger the appropriate `preGame()` function on the back-end server.**
 
-##To Intall Project
+Please [Explore the App](#explore-the-app) for a view on how the game runs.
 
+* react - ^16.8.6
+* react-circular-progressbar - ^2.0.1
+* react-countdown-now - ^2.1.1
+* react-dom - ^16.8.6
+* react-helmet - ^5.2.1
+* react-router-dom - ^5.0.1
+* react-scripts - 3.0.1
+* dotenv - ^8.0.0
+* socket.io - ^2.2.0
+* socket.io-client - ^2.2.0
+* universal-cookie - ^4.0.2
+* sass - ^1.22.7
+
+To Intall Project
 `npm install` to get dependencies
-
-will require .env
-
+will require .env with Instagram sandbox authorization
 `npm start` to start the project on local machine.
 
+## Explore the App
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-update
-update2
-update3
-update4
-update5

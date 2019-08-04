@@ -11,5 +11,4 @@ const Button = (props) => {
             {props.title}
         </button>)
 }
-
 export default Button;

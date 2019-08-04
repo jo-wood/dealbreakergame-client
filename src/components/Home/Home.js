@@ -3,9 +3,7 @@ import {Helmet} from "react-helmet";
 require('dotenv').config({ path: '../../' })
 
 function Home() {
-
   const oauth_url = process.env.REACT_APP_INSTAGRAM_AUTH;
-
   return (
     <div>
       <Helmet>
@@ -27,7 +25,6 @@ function Home() {
         <div className="signin-box">        
           <a href={oauth_url}>
             <span className="signin-box">SIGN IN <br/></span> WITH  <br/>
-
           <div className="instagram">  
             <span className="fa fa-instagram"></span>       
           </div>
@@ -37,5 +34,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

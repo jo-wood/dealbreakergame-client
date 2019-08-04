@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Result from './SingleResult';
 import {Helmet} from "react-helmet";
 import io from 'socket.io-client';
-// import dummyRankedMatches from './socketMessages/finalRankMatches'
-// import dummyUserInfo from './socketMessages/usersProfiles';
 
 class Host extends Component {
   constructor() {
@@ -14,7 +12,6 @@ class Host extends Component {
       grabMatchesInfo: null
     }
   }
-
   _handleMatchResults = ({ rankedMatches, grabMatchesInfo } ) => {
     console.log("rankedMatches:",rankedMatches,", grabMatchesInfo: ",grabMatchesInfo);
       const currentUser = this.state.user_id;
@@ -72,12 +69,11 @@ class Host extends Component {
             <title>Results</title>
             <meta name="description" content="Today's Game results for signed in users. See who you have matched with" />
           </Helmet>
-      <div className="Main">
-        {results}
-      </div>
+        <div className="Main">
+          {results}
+        </div>
       </div>
     );
   }
 }
-
 export default Host;

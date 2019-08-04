@@ -5,13 +5,10 @@ class UserContainer extends Container {
   state = {
     currentUser: null
   };
-
-
   setNewCookie = (userId) => {
     const cookies = new Cookies();
     cookies.set('user_id', userId, { path: '/' });
   }
-
   fetchUser = (url, data) => {
     fetch(url, {
       method: 'POST',

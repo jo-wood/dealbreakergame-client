@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class Option extends Component {
-
   render() {
     const {  option, id } = this.props;
       return (

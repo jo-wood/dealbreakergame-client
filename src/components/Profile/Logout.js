@@ -8,7 +8,6 @@ class Logout extends Component {
       chatlog: null,
     }
   }
-
   render() {
     return (
       <div>
@@ -24,5 +23,4 @@ class Logout extends Component {
     );
   }
 }
-
 export default Logout;

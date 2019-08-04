@@ -4,7 +4,6 @@ import ChatRoom from './ChatRoom';
 import {Helmet} from "react-helmet";
 import { Redirect } from 'react-router-dom'
 import io from 'socket.io-client';
-
 require('dotenv').config({ path: '../../' })
 
 class Waiting extends Component {
@@ -15,14 +14,11 @@ class Waiting extends Component {
       gameStarted: false
     }
   }
-
   async componentDidMount() {
-    console.log(this.state)
     this.socket = io(process.env.REACT_APP_SOCKET_SERVER_URL || 'http://localhost:5001');
     this.socket.on('setNextGameTime', (nextGameTime) => this._handleSocketMessage('setNextGameTime', nextGameTime));
     this.socket.on('gameStarted', (gameStarted) => this._handleSocketMessage('gameStarted', gameStarted));
   }
-
   _handleSocketMessage = (type, payload) => {
     switch (type) {
       case 'setNextGameTime':
@@ -36,7 +32,6 @@ class Waiting extends Component {
         break;
     }
   }
-
   render() {
     const { gameStarted } = this.state;
     return (
