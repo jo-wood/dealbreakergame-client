@@ -1,10 +1,12 @@
 # Dealbreaker Game - Real time dating application
+<div>
+  <img align="right" width="100" height="100" src="https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/src/images/favicon.png">
 
-dealbreakergame.ca (WIP)
+  dealbreakergame.ca (WIP)
 
-<img align="right" width="100" height="100" src="https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/src/images/favicon.png">
+  A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other's instagram profile.
+</div>
 
-A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other's instagram profile.
 
 **Tech Stack:**
 
