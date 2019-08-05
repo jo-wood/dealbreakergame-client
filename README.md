@@ -1,6 +1,6 @@
 # Dealbreaker Game - Real time dating application
 
-![Dealbreaker Logo](./src/images/favicon.png)
+![Dealbreaker Logo](./src/images/favicon.png){:style="float:right;width:100px;"} dealbreakergame.ca (WIP)
 
 A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other's instagram profile.
 
@@ -14,6 +14,8 @@ A real-time dating app that uses an algorithm to match contestants after answeri
 * Socket.IO
 * PostgreSQL
 * Instagram API (OAuth)
+
+
 
 ## Problem Statement
 
@@ -67,3 +69,4 @@ will require .env with Instagram sandbox authorization
 
 ## Explore the App
 
+!['Game In Action'](https://github.com/jo-wood/dealbreakergame-client/blob/master/docs/dealbreakergame.png)
