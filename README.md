@@ -2,7 +2,7 @@
 
 dealbreakergame.ca (WIP)
 
-<img align="right" width="100" height="100" src="https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/docs/dealbreakergame.png">
+<img align="right" width="100" height="100" src="https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/src/images/favicon.png">
 
 A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other's instagram profile.
 
@@ -71,4 +71,4 @@ will require .env with Instagram sandbox authorization
 
 ## Explore the App
 
-!['Game In Action'](https://github.com/jo-wood/dealbreakergame-client/blob/master/docs/dealbreakergame.png)
+!['Game In Action'](https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/docs/dealbreakergame.png)
