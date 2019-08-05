@@ -7,6 +7,7 @@
   A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other's instagram profile.
 </div>
 
+---
 
 **Tech Stack:**
 
