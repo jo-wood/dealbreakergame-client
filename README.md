@@ -75,5 +75,5 @@ will require .env with Instagram sandbox authorization
 ## Explore the App
 
 <p align="center">
-  !['Game In Action'](https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/docs/dealbreakergame.png)
+    <img src="https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/docs/dealbreakergame.png">
 </p>
