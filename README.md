@@ -7,7 +7,9 @@
   A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other's instagram profile.
 </div>
 
-###[Jump to visual on how the App works](#explore-the-app) 
+<p>
+  [Jump to visual on how the App works](#explore-the-app) 
+</p>
 ---
 
 **Tech Stack:**
@@ -76,5 +78,5 @@ will require .env with Instagram sandbox authorization
 ## Explore the App
 
 <p align="center">
-    <img width="100%" src="https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/docs/dealbreakergame.png">
+    <img width="100%" height="100%" src="https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/docs/dealbreakergame.png">
 </p>
