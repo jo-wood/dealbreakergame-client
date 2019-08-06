@@ -2,7 +2,7 @@
 <div>
   <img align="left" width="100" height="100" src="https://github.com/jo-wood/dealbreakergame-client/blob/jo-repo/src/images/favicon.png">
 
-  dealbreakergame.ca (WIP)
+  [dealbreakergame.ca (WIP)](www.dealbreakergame.ca)
 
   A real-time dating app that uses an algorithm to match contestants after answering a blitz of questions before revealing each other's instagram profile.
 </div>
