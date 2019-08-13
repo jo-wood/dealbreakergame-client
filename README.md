@@ -22,7 +22,32 @@
 * PostgreSQL
 * Instagram API (OAuth)
 
+## Primary Dependencies
 
+*This application is built in connection with the backend server in repo:* [backend-server](https://github.com/jo-wood/dealbreakergame-backend)
+
+**Note that this application is built using Instagram's API which keeps development in sandbox mode until privacy requirements are approved. Currently a `Work In Progress` to hardwire a run through case of the project in this repo**
+
+Please [Explore the App](#explore-the-app) for a view on how the game runs.
+
+* react - ^16.8.6
+* react-circular-progressbar - ^2.0.1
+* react-countdown-now - ^2.1.1
+* react-dom - ^16.8.6
+* react-helmet - ^5.2.1
+* react-router-dom - ^5.0.1
+* react-scripts - 3.0.1
+* dotenv - ^8.0.0
+* socket.io - ^2.2.0
+* socket.io-client - ^2.2.0
+* universal-cookie - ^4.0.2
+* sass - ^1.22.7
+
+```
+*To Intall Project must have Instagram sandbox authorization and update .env*
+`npm install` to get dependencies
+`npm start` to start the project on local machine.
+```
 
 ## Problem Statement
 
@@ -48,31 +73,7 @@ A dating app that gives you connection first, with easy effort on the user to st
 * But we still have some questions to go!
 * As you reach the end of the game, your top matches will be fully revealed! And you can start a conversation with plenty to talk about (these questions will guarantee that!)
 
-## Primary Dependencies
 
-*This application is built in connection with the backend server in repo:* [backend-server](https://github.com/jo-wood/dealbreakergame-backend)
-
-**Note that this application is built using Instagram's API which keeps development in sandbox mode until privacy requirements are approved. In order to run through the game's questions, must trigger the appropriate `preGame()` function on the back-end server.**
-
-Please [Explore the App](#explore-the-app) for a view on how the game runs.
-
-* react - ^16.8.6
-* react-circular-progressbar - ^2.0.1
-* react-countdown-now - ^2.1.1
-* react-dom - ^16.8.6
-* react-helmet - ^5.2.1
-* react-router-dom - ^5.0.1
-* react-scripts - 3.0.1
-* dotenv - ^8.0.0
-* socket.io - ^2.2.0
-* socket.io-client - ^2.2.0
-* universal-cookie - ^4.0.2
-* sass - ^1.22.7
-
-To Intall Project
-`npm install` to get dependencies
-will require .env with Instagram sandbox authorization
-`npm start` to start the project on local machine.
 
 ## Explore the App
 
